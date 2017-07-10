@@ -95,6 +95,46 @@ void loop()
         fan4_on = false;
         Serial.println("Fan4: OFF");
         break;
+      case 't':
+        motor1_on = true;
+        Serial.println("Motor1: ON");
+        break;
+      case 'g':
+        motor1_on = false;
+        Serial.println("Motor1: OFF");
+        break;
+      case 'y':
+        motor2_on = true;
+        Serial.println("Motor2: ON");
+        break;
+      case 'h':
+        motor2_on = false;
+        Serial.println("Motor2: OFF");
+        break;
+      case 'u':
+        motor3_on = true;
+        Serial.println("Motor3: ON");
+        break;
+      case 'j':
+        motor3_on = false;
+        Serial.println("Motor3: OFF");
+        break;
+      case 'i':
+        motor4_on = true;
+        Serial.println("Motor4: ON");
+        break;
+      case 'k':
+        motor4_on = false;
+        Serial.println("Motor4: OFF");
+        break;
+      case 'o':
+        motor5_on = true;
+        Serial.println("Motor5: ON");
+        break;
+      case 'l':
+        motor5_on = false;
+        Serial.println("Motor5: OFF");
+        break;
     }
   }
   
@@ -239,5 +279,5 @@ void loop()
     digitalWrite(motor5_R, LOW);
   }
 
-  delay(3);
+  delay(6);
 } 
