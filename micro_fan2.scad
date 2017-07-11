@@ -18,14 +18,12 @@ rubber_band_width = 5;
 
 $fn = 20;
 
-
-
 // assembly view
 //    translate([0, 0, body_height+tol])
 //    slit();
-translate([outer_width/2, 0, 0])
+translate([0, fan_gap/2, 0])
    fan_mount();
-   translate([-outer_width/2, 0, 0])
+   translate([0, -fan_gap/2, 0])
    fan_mount();
 //    rubberband_clamp();
 
@@ -43,6 +41,39 @@ inner_width = fan_width+tol*2;
 outer_width = inner_width + wall_thickness*2;
 body_height = mount_sheet_thickness+fan_height;
 
+///////////// Youngbo Added /////////////
+// Right part
+// Gap between fans' center(mm)
+fan_gap = 33;
+fan_inner_gap = fan_gap - outer_width;
+
+// Bridge thickness between fan mound modules(mm)
+bridge_thick = 1;
+
+// Wing hole size(mm)
+wing_width = 1;
+wing_height = outer_width - 2;
+
+// Bridge drawing
+translate([0, 0, bridge_thick/2])
+cube([outer_width, fan_gap - outer_width, bridge_thick], true);
+
+// Wing drawing
+// Top wing
+difference(){
+    translate([-fan_gap/2, fan_gap/2, bridge_thick/2])
+    cube([fan_gap - outer_width, outer_width, bridge_thick], true);
+    translate([-fan_gap/2 - (fan_inner_gap - 3)/2, fan_gap/2, bridge_thick/2])
+    cube([wing_width, wing_height, bridge_thick*2], true);
+}
+// Bottom wing
+difference(){
+    translate([-fan_gap/2, -fan_gap/2, bridge_thick/2])
+    cube([fan_gap - outer_width, outer_width, bridge_thick], true);
+    translate([-fan_gap/2 - (fan_inner_gap - 3)/2, -fan_gap/2, bridge_thick/2])
+    cube([wing_width, wing_height, bridge_thick*2], true);
+}
+///////////// Youngbo Added /////////////
 
 //linear_extrude(body_height)
 //translate([outer_width/2+wall_thickness,0,0])
