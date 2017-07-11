@@ -45,7 +45,7 @@ body_height = mount_sheet_thickness+fan_height;
 // Right part
 // Gap between fans' center(mm)
 fan_gap = 33;
-fan_inner_gap = fan_gap - outer_width;
+fan_inner_gap = fan_gap - outer_width - 2;
 
 // Bridge thickness between fan mound modules(mm)
 bridge_thick = 1;
@@ -54,23 +54,30 @@ bridge_thick = 1;
 wing_width = 1;
 wing_height = outer_width - 2;
 
+// Left or Right
+LoR = -1;
+
 // Bridge drawing
-translate([0, 0, bridge_thick/2])
-cube([outer_width, fan_gap - outer_width, bridge_thick], true);
+difference(){
+    translate([0, 0, bridge_thick/2])
+    cube([outer_width, fan_gap - outer_width, bridge_thick], true);
+    translate([LoR * (-outer_width/2 + 1.5), 0, bridge_thick/2])
+    cube([wing_width, fan_gap - outer_width - 2, bridge_thick*2], true);
+}
 
 // Wing drawing
 // Top wing
 difference(){
-    translate([-fan_gap/2, fan_gap/2, bridge_thick/2])
-    cube([fan_gap - outer_width, outer_width, bridge_thick], true);
-    translate([-fan_gap/2 - (fan_inner_gap - 3)/2, fan_gap/2, bridge_thick/2])
+    translate([LoR * (fan_gap/2 - fan_inner_gap/2), fan_gap/2, bridge_thick/2])
+    cube([fan_inner_gap/2, outer_width, bridge_thick], true);
+    translate([LoR * (fan_gap/2 - fan_inner_gap/2 + 1), fan_gap/2, bridge_thick/2])
     cube([wing_width, wing_height, bridge_thick*2], true);
 }
 // Bottom wing
 difference(){
-    translate([-fan_gap/2, -fan_gap/2, bridge_thick/2])
-    cube([fan_gap - outer_width, outer_width, bridge_thick], true);
-    translate([-fan_gap/2 - (fan_inner_gap - 3)/2, -fan_gap/2, bridge_thick/2])
+    translate([LoR * (fan_gap/2 - fan_inner_gap/2), -fan_gap/2, bridge_thick/2])
+    cube([fan_inner_gap/2, outer_width, bridge_thick], true);
+    translate([LoR * (fan_gap/2 - fan_inner_gap/2 + 1), -fan_gap/2, bridge_thick/2])
     cube([wing_width, wing_height, bridge_thick*2], true);
 }
 ///////////// Youngbo Added /////////////
