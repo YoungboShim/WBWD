@@ -1,4 +1,4 @@
-// FW of WBWD
+// Firmware of WBWD
 
 // LRA motor driver pin assignment
 const int motor1_F =  2;
@@ -9,8 +9,8 @@ const int motor3_F =  7;
 const int motor3_R =  6;
 const int motor4_F =  8;
 const int motor4_R =  9;
-const int motor5_F =  12;
-const int motor5_R =  11;
+const int motor5_F =  12;// not used
+const int motor5_R =  11;// not used
 
 // Micro fan control pin assignment
 const int fan1 = A0;
@@ -57,6 +57,12 @@ void setup()
  
 void loop() 
 { 
+  loopSerial();
+  loopFanOnOff();
+  loopMotorOnOff();
+} 
+
+void loopSerial(){
   // Serial input for debug
   if(Serial.available() > 0)
   {
@@ -137,7 +143,9 @@ void loop()
         break;
     }
   }
-  
+}
+
+void loopFanOnOff(){
   // Turn on fan if true
   if(fan1_on)
   {
@@ -171,7 +179,9 @@ void loop()
   {
     digitalWrite(fan4, LOW);
   }
+}
 
+void loopMotorOnOff(){
   //Turn on LRA if true
   //Forward
   if(motor1_on)
@@ -225,7 +235,7 @@ void loop()
     digitalWrite(motor5_R, LOW);
   }
   
-  delay(3);
+  delay(6);
 
   //Reverse
   if(motor1_on)
@@ -280,4 +290,5 @@ void loop()
   }
 
   delay(6);
-} 
+}
+
