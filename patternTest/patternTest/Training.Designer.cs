@@ -36,8 +36,6 @@
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRandom = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.comboBoxSerials = new System.Windows.Forms.ComboBox();
-            this.buttonSerialConnect = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.buttonMotorRandom = new System.Windows.Forms.Button();
             this.buttonMotorDown = new System.Windows.Forms.Button();
@@ -107,24 +105,6 @@
             this.buttonRandom.Text = "FAN";
             this.buttonRandom.UseVisualStyleBackColor = false;
             this.buttonRandom.Click += new System.EventHandler(this.buttonRandom_Click);
-            // 
-            // comboBoxSerials
-            // 
-            this.comboBoxSerials.FormattingEnabled = true;
-            this.comboBoxSerials.Location = new System.Drawing.Point(0, 0);
-            this.comboBoxSerials.Name = "comboBoxSerials";
-            this.comboBoxSerials.Size = new System.Drawing.Size(121, 23);
-            this.comboBoxSerials.TabIndex = 5;
-            // 
-            // buttonSerialConnect
-            // 
-            this.buttonSerialConnect.Location = new System.Drawing.Point(127, 0);
-            this.buttonSerialConnect.Name = "buttonSerialConnect";
-            this.buttonSerialConnect.Size = new System.Drawing.Size(75, 23);
-            this.buttonSerialConnect.TabIndex = 6;
-            this.buttonSerialConnect.Text = "Connect";
-            this.buttonSerialConnect.UseVisualStyleBackColor = true;
-            this.buttonSerialConnect.Click += new System.EventHandler(this.buttonSerialConnect_Click);
             // 
             // textBoxLog
             // 
@@ -221,8 +201,6 @@
             this.Controls.Add(this.buttonMotorLeft);
             this.Controls.Add(this.buttonMotorUp);
             this.Controls.Add(this.textBoxLog);
-            this.Controls.Add(this.buttonSerialConnect);
-            this.Controls.Add(this.comboBoxSerials);
             this.Controls.Add(this.buttonRandom);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
@@ -230,6 +208,7 @@
             this.Controls.Add(this.buttonUp);
             this.Name = "Training";
             this.Text = "Training";
+            this.Load += new System.EventHandler(this.Training_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,8 +222,6 @@
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRandom;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.ComboBox comboBoxSerials;
-        private System.Windows.Forms.Button buttonSerialConnect;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.Button buttonMotorRandom;
         private System.Windows.Forms.Button buttonMotorDown;

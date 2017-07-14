@@ -22,42 +22,11 @@ namespace patternTest
         public Training()
         {
             InitializeComponent();
-            Training_Load();
         }
 
-        private void Training_Load()
+        public void SetValues(SerialPort serialPort)
         {
-            // Get available ports
-            String[] ports = SerialPort.GetPortNames();
-            // Display ports in combobox
-            comboBoxSerials.Items.Clear();
-            comboBoxSerials.Items.AddRange(ports);
-            if (ports.Length > 0)
-            {
-                comboBoxSerials.SelectedIndex = comboBoxSerials.Items.Count - 1;
-                serialPort1.BaudRate = 9600;
-                serialPort1.DtrEnable = true;
-                serialPort1.RtsEnable = true;
-            }
-        }
-
-        private void buttonSerialConnect_Click(object sender, EventArgs e)
-        {
-            //Connect to combobox selected serial port
-            if (!serialPort1.IsOpen)
-            {
-                serialPort1.PortName = (String)comboBoxSerials.Items[comboBoxSerials.SelectedIndex];
-                serialPort1.Open();
-                serialPort1.ReadExisting();
-                buttonSerialConnect.BackColor = Color.Orange;
-                logWrite("Connected to " + serialPort1.PortName);
-            }
-            else
-            {
-                serialPort1.Close();
-                buttonSerialConnect.BackColor = SystemColors.ButtonFace;
-                logWrite("Disconnected from " + serialPort1.PortName);
-            }
+            this.serialPort1 = serialPort;
         }
 
         private void logWrite(string s)
@@ -253,7 +222,7 @@ namespace patternTest
         {
             if (buttonMotorRandom.BackColor != Color.Navy)
             {
-                logWrite("Motor Rnadom");
+                logWrite("Motor Random");
                 if (motorPatternSelected)
                 {
                     motorBtnTurnOff(motorPatternIdx);
@@ -352,6 +321,17 @@ namespace patternTest
                 }
                 serialPort1.WriteLine(command);
             }
+        }
+
+        private void Training_Load(object sender, EventArgs e)
+        {
+            this.TopMost = true;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void buttonSerialConnect_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)

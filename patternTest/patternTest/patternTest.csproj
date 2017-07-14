@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exp1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exp1.Designer.cs">
+      <DependentUpon>Exp1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpManager.Designer.cs">
+      <DependentUpon>ExpManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Training.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Exp1.resx">
+      <DependentUpon>Exp1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpManager.resx">
+      <DependentUpon>ExpManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Training.resx">
       <DependentUpon>Training.cs</DependentUpon>
     </EmbeddedResource>
