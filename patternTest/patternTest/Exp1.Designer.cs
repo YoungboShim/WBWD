@@ -122,6 +122,7 @@
             this.Controls.Add(this.buttonUp);
             this.Name = "Exp1";
             this.Text = "Exp1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exp1_FormClosing);
             this.Load += new System.EventHandler(this.Exp1_Load);
             this.ResumeLayout(false);
 

@@ -16,6 +16,7 @@ namespace patternTest
         Training train;
         Exp1 exp1;
         int testIdx = -1;
+        bool isFan = true;
         public ExpManager()
         {
             InitializeComponent();
@@ -82,11 +83,23 @@ namespace patternTest
                     break;
                 case 1:
                     exp1 = new Exp1();
-                    exp1.SetValues(serialPort1);
+                    exp1.SetValues(serialPort1, textBoxID.Text, isFan);
                     exp1.Show();
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void comboBoxFanMotor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBoxFanMotor.SelectedIndex == 0)
+            {
+                isFan = true;
+            }
+            else
+            {
+                isFan = false;
             }
         }
     }
