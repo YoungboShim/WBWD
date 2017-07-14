@@ -34,8 +34,15 @@ bool fanLatter[4] = {false, false, false, false};
 bool motorFormer[4] = {false, false, false, false};
 bool motorLatter[4] = {false, false, false, false};
 
-bool tmpFormer[4] = {true, false, false, false};
-bool tmpLatter[4] = {false, true, false, false};
+// Patterns
+bool downFormer[4] = {true, true, false, false};
+bool downLatter[4] = {false, false, true, true};
+bool upFormer[4] = {false, false, true, true};
+bool upLatter[4] = {true, true, false, false};
+bool rightFormer[4] = {true, false, true, false};
+bool rightLatter[4] = {false, true, false, true};
+bool leftFormer[4] = {false, true, false, true};
+bool leftLatter[4] = {true, false, true, false};
  
 void setup() 
 { 
@@ -119,77 +126,129 @@ void loopSerial()
 {
   if(Serial.available() > 0)
   {
+    char line[100];
+    int lineIdx = 0;
     char c = Serial.read();
-    switch(c)
+    bool isPattern = false;
+    while(c != '\n' && lineIdx < 100)
     {
-      case 'q':
-        fanOn[0] = true;
-        Serial.println("Fan1: ON");
-        break;
-      case 'a':
-        fanOn[0] = false;
-        Serial.println("Fan1: OFF");
-        break;
-      case 'w':
-        fanOn[1] = true;
-        Serial.println("Fan2: ON");
-        break;
-      case 's':
-        fanOn[1] = false;
-        Serial.println("Fan1: OFF");
-        break;
-      case 'e':
-        fanOn[2] = true;
-        Serial.println("Fan3: ON");
-        break;
-      case 'd':
-        fanOn[2] = false;
-        Serial.println("Fan3: OFF");
-        break;
-      case 'r':
-        fanOn[3] = true;
-        Serial.println("Fan4: ON");
-        break;
+      line[lineIdx++] = c;
+      c = Serial.read();
+    }
+    char c1 = line[0], c2 = line[1];
+    int fanNum, motorNum;
+    bool tmpFanFormer[4], tmpFanLatter[4], tmpMotorFormer[4], tmpMotorLatter[4];
+    
+    switch(c1)
+    {
+      // Debugging cases
       case 'f':
-        fanOn[3] = false;
-        Serial.println("Fan4: OFF");
+        fanNum = (int)c2 - 49;
+        Serial.println(c2);
+        Serial.println(fanNum);
+        if(0 <= fanNum && fanNum < 4)
+        {
+          fanOn[fanNum] = !fanOn[fanNum];
+          Serial.print("Fan");
+          Serial.print(c2);
+          if(fanOn[fanNum])
+          {
+            Serial.print(": ON\n");
+          }
+          else
+          {
+             Serial.print(": OFF\n");
+          }
+        }
         break;
-      case 't':
-        motorOn[0] = true;
-        Serial.println("Motor1: ON");
-        break;
-      case 'g':
-        motorOn[0] = false;
-        Serial.println("Motor1: OFF");
-        break;
-      case 'y':
-        motorOn[1] = true;
-        Serial.println("Motor2: ON");
-        break;
-      case 'h':
-        motorOn[1] = false;
-        Serial.println("Motor2: OFF");
-        break;
-      case 'u':
-        motorOn[2] = true;
-        Serial.println("Motor3: ON");
-        break;
-      case 'j':
-        motorOn[2] = false;
-        Serial.println("Motor3: OFF");
-        break;
-      case 'i':
-        motorOn[3] = true;
-        Serial.println("Motor4: ON");
-        break;
-      case 'k':
-        motorOn[3] = false;
-        Serial.println("Motor4: OFF");
+      case 'm':
+        motorNum = (int)c2 - 49;
+        if(0 <= motorNum && motorNum < 4)
+        {
+          motorOn[motorNum] = !motorOn[motorNum];
+          Serial.print("Motor");
+          Serial.print(c2);
+          if(motorOn[fanNum])
+          {
+            Serial.print(": ON\n");
+          }
+          else
+          {
+             Serial.print(": OFF\n");
+          }
+        }
         break;
       case 'z':
-        startPattern(tmpFormer, initBool, tmpLatter, initBool);
+        //startPattern(tmpFormer, initBool, tmpLatter, initBool);
+        for(int i=0;i<4;i++)
+        {
+          fanOn[i] = false;
+          motorOn[i] = false;
+        }
+        patternOn = false;
+        break;
+      // Pattern cogition
+      case 'u':
+        memcpy(tmpFanFormer, upFormer, 4 * sizeof(bool));
+        memcpy(tmpFanLatter, upLatter, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'd':
+        memcpy(tmpFanFormer, downFormer, 4 * sizeof(bool));
+        memcpy(tmpFanLatter, downLatter, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'l':
+        memcpy(tmpFanFormer, leftFormer, 4 * sizeof(bool));
+        memcpy(tmpFanLatter, leftLatter, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'r':
+        memcpy(tmpFanFormer, rightFormer, 4 * sizeof(bool));
+        memcpy(tmpFanLatter, rightLatter, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'n':
+        memcpy(tmpFanFormer, initBool, 4 * sizeof(bool));
+        memcpy(tmpFanLatter, initBool, 4 * sizeof(bool));
+        isPattern = true;
+        break;
       default:
         break;
+    }
+
+    if(isPattern)
+    {
+      switch(c2)
+      {
+        case 'u':
+        memcpy(tmpMotorFormer, upFormer, 4 * sizeof(bool));
+        memcpy(tmpMotorLatter, upLatter, 4 * sizeof(bool));
+        break;
+      case 'd':
+        memcpy(tmpMotorFormer, downFormer, 4 * sizeof(bool));
+        memcpy(tmpMotorLatter, downLatter, 4 * sizeof(bool));
+        break;
+      case 'l':
+        memcpy(tmpMotorFormer, leftFormer, 4 * sizeof(bool));
+        memcpy(tmpMotorLatter, leftLatter, 4 * sizeof(bool));
+        break;
+      case 'r':
+        memcpy(tmpMotorFormer, rightFormer, 4 * sizeof(bool));
+        memcpy(tmpMotorLatter, rightLatter, 4 * sizeof(bool));
+        break;
+      case 'n':
+        memcpy(tmpMotorFormer, initBool, 4 * sizeof(bool));
+        memcpy(tmpMotorLatter, initBool, 4 * sizeof(bool));
+        break;
+      default:
+        isPattern = false;
+        break;
+      }
+    }
+    if(isPattern)
+    {
+      startPattern(tmpFanFormer, tmpMotorFormer, tmpFanLatter, tmpMotorLatter);
     }
   }
 }
