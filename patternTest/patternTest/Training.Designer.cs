@@ -47,6 +47,7 @@
             // 
             // buttonUp
             // 
+            this.buttonUp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonUp.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonUp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonUp.Image")));
@@ -59,6 +60,7 @@
             // 
             // buttonLeft
             // 
+            this.buttonLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonLeft.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonLeft.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonLeft.Image")));
@@ -71,6 +73,7 @@
             // 
             // buttonRight
             // 
+            this.buttonRight.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonRight.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonRight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonRight.Image")));
@@ -83,6 +86,7 @@
             // 
             // buttonDown
             // 
+            this.buttonDown.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonDown.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonDown.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonDown.Image")));
@@ -95,6 +99,7 @@
             // 
             // buttonRandom
             // 
+            this.buttonRandom.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonRandom.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonRandom.Font = new System.Drawing.Font("돋움", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonRandom.ForeColor = System.Drawing.SystemColors.Window;
@@ -108,6 +113,7 @@
             // 
             // textBoxLog
             // 
+            this.textBoxLog.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxLog.Location = new System.Drawing.Point(0, 38);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
@@ -116,6 +122,7 @@
             // 
             // buttonMotorRandom
             // 
+            this.buttonMotorRandom.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMotorRandom.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonMotorRandom.Font = new System.Drawing.Font("돋움", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonMotorRandom.ForeColor = System.Drawing.SystemColors.Window;
@@ -129,6 +136,7 @@
             // 
             // buttonMotorDown
             // 
+            this.buttonMotorDown.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMotorDown.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonMotorDown.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonMotorDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorDown.Image")));
@@ -141,6 +149,7 @@
             // 
             // buttonMotorRight
             // 
+            this.buttonMotorRight.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMotorRight.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonMotorRight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonMotorRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorRight.Image")));
@@ -153,6 +162,7 @@
             // 
             // buttonMotorLeft
             // 
+            this.buttonMotorLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMotorLeft.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonMotorLeft.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonMotorLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorLeft.Image")));
@@ -165,6 +175,7 @@
             // 
             // buttonMotorUp
             // 
+            this.buttonMotorUp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMotorUp.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonMotorUp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonMotorUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorUp.Image")));
@@ -177,6 +188,7 @@
             // 
             // buttonPlay
             // 
+            this.buttonPlay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonPlay.BackColor = System.Drawing.SystemColors.WindowText;
             this.buttonPlay.Font = new System.Drawing.Font("돋움", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.buttonPlay.ForeColor = System.Drawing.SystemColors.Window;
