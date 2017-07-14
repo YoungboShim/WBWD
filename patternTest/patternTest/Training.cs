@@ -329,11 +329,6 @@ namespace patternTest
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void buttonSerialConnect_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonLeft_Click(object sender, EventArgs e)
         {
             if (buttonLeft.BackColor != Color.Navy)

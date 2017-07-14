@@ -14,6 +14,7 @@ namespace patternTest
     public partial class ExpManager : Form
     {
         Training train;
+        Exp1 exp1;
         int testIdx = -1;
         public ExpManager()
         {
@@ -78,6 +79,11 @@ namespace patternTest
                     train = new Training();
                     train.SetValues(serialPort1);                    
                     train.Show();
+                    break;
+                case 1:
+                    exp1 = new Exp1();
+                    exp1.SetValues(serialPort1);
+                    exp1.Show();
                     break;
                 default:
                     break;

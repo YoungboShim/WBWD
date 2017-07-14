@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelSerial = new System.Windows.Forms.Panel();
-            this.panelSetting = new System.Windows.Forms.Panel();
-            this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
-            this.comboBoxSerials = new System.Windows.Forms.ComboBox();
             this.buttonConnect = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.comboBoxSerials = new System.Windows.Forms.ComboBox();
+            this.buttonReset = new System.Windows.Forms.Button();
+            this.panelSetting = new System.Windows.Forms.Panel();
             this.comboBoxTest = new System.Windows.Forms.ComboBox();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panelSerial.SuspendLayout();
             this.panelSetting.SuspendLayout();
             this.SuspendLayout();
@@ -51,24 +51,25 @@
             this.panelSerial.Size = new System.Drawing.Size(391, 66);
             this.panelSerial.TabIndex = 0;
             // 
-            // panelSetting
+            // buttonConnect
             // 
-            this.panelSetting.Controls.Add(this.comboBoxTest);
-            this.panelSetting.Location = new System.Drawing.Point(0, 72);
-            this.panelSetting.Name = "panelSetting";
-            this.panelSetting.Size = new System.Drawing.Size(391, 66);
-            this.panelSetting.TabIndex = 1;
+            this.buttonConnect.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConnect.Location = new System.Drawing.Point(266, 12);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(101, 32);
+            this.buttonConnect.TabIndex = 4;
+            this.buttonConnect.Text = "Connect";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
-            // buttonStart
+            // comboBoxSerials
             // 
-            this.buttonStart.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStart.Location = new System.Drawing.Point(266, 144);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(116, 37);
-            this.buttonStart.TabIndex = 0;
-            this.buttonStart.Text = "Start";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.comboBoxSerials.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSerials.FormattingEnabled = true;
+            this.comboBoxSerials.Location = new System.Drawing.Point(119, 12);
+            this.comboBoxSerials.Name = "comboBoxSerials";
+            this.comboBoxSerials.Size = new System.Drawing.Size(123, 32);
+            this.comboBoxSerials.TabIndex = 3;
             // 
             // buttonReset
             // 
@@ -81,37 +82,37 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
-            // comboBoxSerials
+            // panelSetting
             // 
-            this.comboBoxSerials.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSerials.FormattingEnabled = true;
-            this.comboBoxSerials.Location = new System.Drawing.Point(119, 12);
-            this.comboBoxSerials.Name = "comboBoxSerials";
-            this.comboBoxSerials.Size = new System.Drawing.Size(123, 32);
-            this.comboBoxSerials.TabIndex = 3;
-            // 
-            // buttonConnect
-            // 
-            this.buttonConnect.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConnect.Location = new System.Drawing.Point(266, 12);
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.Size = new System.Drawing.Size(101, 32);
-            this.buttonConnect.TabIndex = 4;
-            this.buttonConnect.Text = "Connect";
-            this.buttonConnect.UseVisualStyleBackColor = true;
-            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
+            this.panelSetting.Controls.Add(this.comboBoxTest);
+            this.panelSetting.Location = new System.Drawing.Point(0, 72);
+            this.panelSetting.Name = "panelSetting";
+            this.panelSetting.Size = new System.Drawing.Size(391, 66);
+            this.panelSetting.TabIndex = 1;
             // 
             // comboBoxTest
             // 
             this.comboBoxTest.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTest.FormattingEnabled = true;
             this.comboBoxTest.Items.AddRange(new object[] {
-            "Training"});
+            "Training",
+            "Exp#1"});
             this.comboBoxTest.Location = new System.Drawing.Point(121, 17);
             this.comboBoxTest.Name = "comboBoxTest";
             this.comboBoxTest.Size = new System.Drawing.Size(121, 32);
             this.comboBoxTest.TabIndex = 5;
             this.comboBoxTest.SelectedIndexChanged += new System.EventHandler(this.comboBoxTest_SelectedIndexChanged);
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStart.Location = new System.Drawing.Point(266, 144);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(116, 37);
+            this.buttonStart.TabIndex = 0;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // ExpManager
             // 
