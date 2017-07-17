@@ -36,6 +36,7 @@
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.labelTrial = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonPlay
@@ -109,12 +110,25 @@
             this.buttonUp.UseVisualStyleBackColor = false;
             this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
+            // labelTrial
+            // 
+            this.labelTrial.AutoSize = true;
+            this.labelTrial.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelTrial.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTrial.ForeColor = System.Drawing.Color.Gray;
+            this.labelTrial.Location = new System.Drawing.Point(0, 814);
+            this.labelTrial.Name = "labelTrial";
+            this.labelTrial.Size = new System.Drawing.Size(68, 35);
+            this.labelTrial.TabIndex = 10;
+            this.labelTrial.Text = "1/48";
+            // 
             // Exp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowText;
             this.ClientSize = new System.Drawing.Size(1277, 849);
+            this.Controls.Add(this.labelTrial);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
@@ -125,6 +139,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exp1_FormClosing);
             this.Load += new System.EventHandler(this.Exp1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,5 +151,6 @@
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonUp;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Label labelTrial;
     }
 }

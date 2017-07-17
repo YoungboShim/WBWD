@@ -39,7 +39,7 @@ namespace patternTest
             if (ports.Length > 0)
             {
                 comboBoxSerials.SelectedIndex = comboBoxSerials.Items.Count - 1;
-                serialPort1.BaudRate = 9600;
+                serialPort1.BaudRate = 115200;
                 serialPort1.DtrEnable = true;
                 serialPort1.RtsEnable = true;
             }

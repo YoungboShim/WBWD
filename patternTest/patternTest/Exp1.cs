@@ -15,6 +15,9 @@ namespace patternTest
     public partial class Exp1 : Form
     {
         enum patterns { up, down, left, right, none};
+        int[] stimuliSample = new int[48];
+        int[] stimuli = new int[48];
+        int[] stimuliIdx = new int[48];
         int trialNum, currPattern;
         int onsetDelay = 500, duration = 500;
         bool isFan = true;
@@ -28,13 +31,39 @@ namespace patternTest
 
         private void Exp1_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            //this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
 
             tw = new StreamWriter("Exp1_" + ID + "_" + setting + ".csv", true);
             tw.WriteLine("Trial#,Stimuli,Answer,Correct");
 
+            shuffleStimuli();
+
+            setAnswerButtonColor(Color.Black);
             setAnswerButtonEnable(false);
+        }
+
+        private void shuffleStimuli()
+        {
+            Random random = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 12; j++)
+                {
+                    stimuliSample[12 * i + j] = i;
+                    stimuliIdx[12 * i + j] = -1;
+                }
+            }
+            int idx = 0;
+            while(idx < 48)
+            {
+                int tmp = random.Next(48);
+                if (!stimuliIdx.Contains(tmp))
+                {
+                    stimuli[idx] = stimuliSample[tmp];
+                    stimuliIdx[idx++] = tmp;
+                }
+            }
         }
 
         public void SetValues(SerialPort serialport, string ID, bool isFan)
@@ -77,11 +106,24 @@ namespace patternTest
             {
                 tw.Write(answer + "," + "0\n");
             }
-            buttonPlay.Enabled = true;
-            buttonPlay.ForeColor = Color.White;
 
-            setAnswerButtonColor(Color.Black);
-            setAnswerButtonEnable(false);
+            if (trialNum < 48)
+            {
+                buttonPlay.Enabled = true;
+                buttonPlay.ForeColor = Color.White;
+
+                setAnswerButtonColor(Color.Black);
+                setAnswerButtonEnable(false);
+
+                labelTrial.Text = (trialNum + 1).ToString() + "/48";
+            }
+            else
+            {
+                setAnswerButtonColor(Color.Black);
+                setAnswerButtonEnable(false);
+
+                labelTrial.Text = "Finished!";
+            }
         }
 
         private void playPattern(int pattern)
@@ -121,8 +163,7 @@ namespace patternTest
 
         private int callPattern()
         {
-            Random rand = new Random();
-            return rand.Next(4);
+            return stimuli[trialNum];
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)
