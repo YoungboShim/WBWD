@@ -62,7 +62,7 @@ void setup()
   pinMode (fan3, OUTPUT);
   pinMode (fan4, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   while (! Serial);
   Serial.println("Ready for command...");
