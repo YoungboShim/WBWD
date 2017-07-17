@@ -34,14 +34,14 @@
             this.comboBoxSerials = new System.Windows.Forms.ComboBox();
             this.buttonReset = new System.Windows.Forms.Button();
             this.panelSetting = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxFanMotor = new System.Windows.Forms.ComboBox();
             this.comboBoxTest = new System.Windows.Forms.ComboBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.comboBoxFanMotor = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panelSerial.SuspendLayout();
             this.panelSetting.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,57 @@
             this.panelSetting.Size = new System.Drawing.Size(391, 66);
             this.panelSetting.TabIndex = 1;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(260, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 24);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Set";
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxID.Location = new System.Drawing.Point(172, 18);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(78, 32);
+            this.textBoxID.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(149, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 24);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "ID";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 24);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Exp";
+            // 
+            // comboBoxFanMotor
+            // 
+            this.comboBoxFanMotor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFanMotor.FormattingEnabled = true;
+            this.comboBoxFanMotor.Items.AddRange(new object[] {
+            "Fan",
+            "Motor"});
+            this.comboBoxFanMotor.Location = new System.Drawing.Point(295, 18);
+            this.comboBoxFanMotor.Name = "comboBoxFanMotor";
+            this.comboBoxFanMotor.Size = new System.Drawing.Size(80, 32);
+            this.comboBoxFanMotor.TabIndex = 6;
+            this.comboBoxFanMotor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFanMotor_SelectedIndexChanged);
+            // 
             // comboBoxTest
             // 
             this.comboBoxTest.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -124,56 +175,9 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // comboBoxFanMotor
+            // serialPort1
             // 
-            this.comboBoxFanMotor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxFanMotor.FormattingEnabled = true;
-            this.comboBoxFanMotor.Items.AddRange(new object[] {
-            "Fan",
-            "Motor"});
-            this.comboBoxFanMotor.Location = new System.Drawing.Point(295, 18);
-            this.comboBoxFanMotor.Name = "comboBoxFanMotor";
-            this.comboBoxFanMotor.Size = new System.Drawing.Size(80, 32);
-            this.comboBoxFanMotor.TabIndex = 6;
-            this.comboBoxFanMotor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFanMotor_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 24);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Exp";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(149, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 24);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "ID";
-            // 
-            // textBoxID
-            // 
-            this.textBoxID.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxID.Location = new System.Drawing.Point(172, 18);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(78, 32);
-            this.textBoxID.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(260, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 24);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Set";
+            this.serialPort1.BaudRate = 115200;
             // 
             // ExpManager
             // 

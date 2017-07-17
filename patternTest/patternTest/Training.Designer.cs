@@ -111,6 +111,10 @@
             this.buttonRandom.UseVisualStyleBackColor = false;
             this.buttonRandom.Click += new System.EventHandler(this.buttonRandom_Click);
             // 
+            // serialPort1
+            // 
+            this.serialPort1.BaudRate = 115200;
+            // 
             // textBoxLog
             // 
             this.textBoxLog.Anchor = System.Windows.Forms.AnchorStyles.None;
