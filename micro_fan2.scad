@@ -21,11 +21,10 @@ $fn = 20;
 // assembly view
 //    translate([0, 0, body_height+tol])
 //    slit();
-translate([0, fan_gap/2, 0])
-rotate([0,0,90])
-fan_mount();
-translate([0, -fan_gap/2, 0])
-fan_mount();
+translate([outer_width/2, 0, 0])
+    fan_mount();
+translate([-outer_width/2, 0, 0])
+    fan_mount();
 //    rubberband_clamp();
 
 // individual
@@ -45,8 +44,8 @@ body_height = mount_sheet_thickness+fan_height;
 ///////////// Youngbo Added /////////////
 // Right part
 // Gap between fans' center(mm)
-fan_gap = 33;
-fan_inner_gap = (fan_gap - outer_width) / 2;
+fan_gap = outer_width;
+fan_inner_gap = 4.5;
 
 // Bridge thickness between fan mound modules(mm)
 bridge_thick = 2;
@@ -56,39 +55,52 @@ wing_width = 1.5;
 wing_height = outer_width - 2;
 
 // Left or Right
-LoR = -1;
+LoR = 1;
+
+rotate([0,0,90])
+    wing();
+rotate([0,0,90])
+    wire_mount();
 
 // Bridge drawing
-translate([0, 0, bridge_thick/2])
-cube([outer_width, fan_gap - outer_width, bridge_thick], true);
-
+module bridge()
+{
+    translate([0, 0, bridge_thick/2])
+    cube([outer_width, fan_gap - outer_width, bridge_thick], true);
+}
 // Wing drawing
-// Top wing
-difference(){
-    translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
-    cube([fan_inner_gap, outer_width, bridge_thick], true);
-    translate([LoR * (fan_gap/2 - fan_inner_gap/2 + 1), fan_gap/2, bridge_thick/2])
-    cube([wing_width, wing_height, bridge_thick*2], true);
-}
-// Bottom wing
-difference(){
-    translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
-    cube([fan_inner_gap, outer_width, bridge_thick], true);
-    translate([LoR * (fan_gap/2 - fan_inner_gap/2 + 1), -fan_gap/2, bridge_thick/2])
-    cube([wing_width, wing_height, bridge_thick*2], true);
+module wing()
+{
+    // Top wing
+    difference(){
+        translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
+        cube([fan_inner_gap, outer_width, bridge_thick], true);
+        translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
+        cube([wing_width, wing_height, bridge_thick*2], true);
+    }
+    // Bottom wing
+    difference(){
+        translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
+        cube([fan_inner_gap, outer_width, bridge_thick], true);
+        translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
+        cube([wing_width, wing_height, bridge_thick*2], true);
+    }
 }
 
-// Wire mount(bottom)
-translate([0, (fan_gap + outer_width)/2 + 1.5, 1])
-cube([outer_width, 3, 2], center=true);
-translate([0, (fan_gap + outer_width)/2 + 2.25, 4])
-cube([outer_width, 1.5, 4], center=true);
+module wire_mount()
+{
+    // Wire mount(bottom)
+    translate([0, (fan_gap + outer_width)/2 + 1.5, 1])
+    cube([outer_width, 3, 2], center=true);
+    translate([0, (fan_gap + outer_width)/2 + 2.25, 4])
+    cube([outer_width, 1.5, 4], center=true);
 
-// Wire mount(top)
-translate([0, -(fan_gap + outer_width)/2 - 1.5, 1])
-cube([outer_width, 3, 2], center=true);
-translate([0, -(fan_gap + outer_width)/2 - 2.25, 4])
-cube([outer_width, 1.5, 4], center=true);
+    // Wire mount(top)
+    translate([0, -(fan_gap + outer_width)/2 - 1.5, 1])
+    cube([outer_width, 3, 2], center=true);
+    translate([0, -(fan_gap + outer_width)/2 - 2.25, 4])
+    cube([outer_width, 1.5, 4], center=true);
+}
 ///////////// Youngbo Added /////////////
 
 //linear_extrude(body_height)
@@ -190,11 +202,12 @@ module fan_mount()
                     {
                         // mounting hole columns
                         translate([fan_hole_dist/2, fan_hole_dist/2])
+                        if(rot == 0 || rot == 2)
                         circle(d=fan_hole_dia+wall_thickness*2+tol*2);
                         
                         // bridges
                         translate([0, (fan_hole_dist+fan_hole_dia+wall_thickness)/2])
-                        square([fan_hole_dist, wall_thickness], center=true);                
+                        square([fan_hole_dist + 4, wall_thickness], center=true);                
                     }
                 }
             }
@@ -202,9 +215,10 @@ module fan_mount()
 
             // mounting holes - inner
             for(rot = [0:3])
-                rotate([0,0,rot*90])
-                    translate([fan_hole_dist/2, fan_hole_dist/2])
-                        circle(d=fan_hole_dia+tol);
+                if(rot == 0 || rot == 2)
+                    rotate([0,0,rot*90])
+                        translate([fan_hole_dist/2, fan_hole_dist/2])
+                            circle(d=fan_hole_dia+tol);
         }
      
     }
