@@ -25,7 +25,7 @@ bool motorOn[4] = {false, false, false, false};
 bool fanOn[4] = {false, false, false, false};
 
 // Pattern managing variables
-const int duration = 500;// Pattern's duration(ms)
+const int duration = 1000;// Pattern's duration(ms)
 int curTime = 0; // Timer starts from 0 when pattern starts
 bool patternOn = false; // Pattern indicating flag
 const bool initBool[4] = {false, false, false, false};
@@ -62,7 +62,7 @@ void setup()
   pinMode (fan3, OUTPUT);
   pinMode (fan4, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   while (! Serial);
   Serial.println("Ready for command...");
@@ -82,23 +82,30 @@ void loopPatternManager()
 {
   if(patternOn)
   {
-    if(curTime > duration)
+    if(curTime > duration * 0.75)
     {
       // Turn off both fan and motor becuase time is expired
-      memcpy(fanLatter, initBool, 4 * sizeof(bool));
-      memcpy(motorLatter, initBool, 4 * sizeof(bool));
       memcpy(fanOn, initBool, 4 * sizeof(bool));
       memcpy(motorOn, initBool, 4 * sizeof(bool));
+      
+      memcpy(fanFormer, initBool, 4 * sizeof(bool));
+      memcpy(motorFormer, initBool, 4 * sizeof(bool));
+      memcpy(fanLatter, initBool, 4 * sizeof(bool));
+      memcpy(motorLatter, initBool, 4 * sizeof(bool));
   
       patternOn = false;
     }
-    else if(curTime > duration / 2)
+    else if(curTime > duration  * 0.5)
     {
       //Turn off the former bool and assign latter bools
       memcpy(fanOn, fanLatter, 4 * sizeof(bool));
       memcpy(motorOn, motorLatter, 4 * sizeof(bool));
-      memcpy(fanFormer, initBool, 4 * sizeof(bool));
-      memcpy(motorFormer, initBool, 4 * sizeof(bool));
+    }
+    else if(curTime > duration  * 0.25)
+    {
+      //Turn off the former bool and assign latter bools
+      memcpy(fanOn, initBool, 4 * sizeof(bool));
+      memcpy(motorOn, initBool, 4 * sizeof(bool));
     }
   }
 }
