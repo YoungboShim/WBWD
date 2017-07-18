@@ -19,7 +19,7 @@ namespace patternTest
         int[] stimuli = new int[48];
         int[] stimuliIdx = new int[48];
         int trialNum, currPattern;
-        int onsetDelay = 500, duration = 500;
+        int onsetDelay = 500, duration = 1000;
         bool isFan = true;
         string ID, setting;
         TextWriter tw;
@@ -157,7 +157,7 @@ namespace patternTest
                 command = "n" + command;
             }
 
-            tw.Write(++trialNum + "," + pattern + ",");
+            tw.Write(++trialNum + "," + command + ",");
             serialPort1.WriteLine(command);
         }
 
