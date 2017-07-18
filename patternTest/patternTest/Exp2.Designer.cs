@@ -122,6 +122,10 @@
             this.buttonUp.UseVisualStyleBackColor = false;
             this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
+            // serialPort1
+            // 
+            this.serialPort1.BaudRate = 115200;
+            // 
             // Exp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
