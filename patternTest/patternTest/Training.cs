@@ -19,6 +19,8 @@ namespace patternTest
         bool fanPatternSelected = false, motorPatternSelected = false;
         int fanPatternIdx = (int)patterns.none, motorPatternIdx = (int)patterns.none;
 
+        int currFanPattern, currMotorPattern;
+
         public Training()
         {
             InitializeComponent();
@@ -268,15 +270,14 @@ namespace patternTest
             {
                 string command = "";
                 int tmpFanIdx = fanPatternIdx, tmpMotorIdx = motorPatternIdx;
+                Random rand = new Random();
                 if (fanPatternIdx == (int)patterns.random)
                 {
-                    Random rand1 = new Random();
-                    tmpFanIdx = rand1.Next(5);
+                    tmpFanIdx = rand.Next(4);
                 }
                 if (motorPatternIdx == (int)patterns.random)
                 {
-                    Random rand2 = new Random();
-                    tmpMotorIdx = rand2.Next(5);
+                    tmpMotorIdx = rand.Next(4);
                 }
                 switch (tmpFanIdx)
                 {
@@ -320,13 +321,98 @@ namespace patternTest
                         break;
                 }
                 serialPort1.WriteLine(command);
+                currFanPattern = tmpFanIdx;
+                currMotorPattern = tmpMotorIdx;
             }
         }
 
         private void Training_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            //this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void buttonAnswer_Click(object sender, EventArgs e)
+        {
+            Color FanColor = new Color();
+            Color MotorColor = new Color(); ;
+            switch(currFanPattern)
+            {
+                case (int)patterns.up:
+                    FanColor = buttonUp.BackColor;
+                    buttonUp.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.down:
+                    FanColor = buttonDown.BackColor;
+                    buttonDown.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.left:
+                    FanColor = buttonLeft.BackColor;
+                    buttonLeft.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.right:
+                    FanColor = buttonRight.BackColor;
+                    buttonRight.BackColor = Color.Orange;
+                    break;
+                default:
+                    break;
+            }
+            switch (currMotorPattern)
+            {
+                case (int)patterns.up:
+                    MotorColor = buttonMotorUp.BackColor;
+                    buttonMotorUp.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.down:
+                    MotorColor = buttonMotorDown.BackColor;
+                    buttonMotorDown.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.left:
+                    MotorColor = buttonMotorLeft.BackColor;
+                    buttonMotorLeft.BackColor = Color.Orange;
+                    break;
+                case (int)patterns.right:
+                    MotorColor = buttonMotorRight.BackColor;
+                    buttonMotorRight.BackColor = Color.Orange;
+                    break;
+                default:
+                    break;
+            }
+            Delay(200);
+            switch (currFanPattern)
+            {
+                case (int)patterns.up:
+                    buttonUp.BackColor = FanColor;
+                    break;
+                case (int)patterns.down:
+                    buttonDown.BackColor = FanColor;
+                    break;
+                case (int)patterns.left:
+                    buttonLeft.BackColor = FanColor;
+                    break;
+                case (int)patterns.right:
+                    buttonRight.BackColor = FanColor;
+                    break;
+                default:
+                    break;
+            }
+            switch (currMotorPattern)
+            {
+                case (int)patterns.up:
+                    buttonMotorUp.BackColor = MotorColor;
+                    break;
+                case (int)patterns.down:
+                    buttonMotorDown.BackColor = MotorColor;
+                    break;
+                case (int)patterns.left:
+                    buttonMotorLeft.BackColor = MotorColor;
+                    break;
+                case (int)patterns.right:
+                    buttonMotorRight.BackColor = MotorColor;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)
@@ -371,6 +457,19 @@ namespace patternTest
                 fanPatternIdx = (int)patterns.none;
                 buttonDown.BackColor = Color.Black;
             }
+        }
+
+        private static DateTime Delay(int MS)
+        {
+            DateTime ThisMoment = DateTime.Now;
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+            DateTime AfterWards = ThisMoment.Add(duration);
+            while (AfterWards >= ThisMoment)
+            {
+                System.Windows.Forms.Application.DoEvents();
+                ThisMoment = DateTime.Now;
+            }
+            return DateTime.Now;
         }
     }
 }

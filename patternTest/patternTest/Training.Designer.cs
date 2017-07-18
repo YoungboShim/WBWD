@@ -43,6 +43,7 @@
             this.buttonMotorLeft = new System.Windows.Forms.Button();
             this.buttonMotorUp = new System.Windows.Forms.Button();
             this.buttonPlay = new System.Windows.Forms.Button();
+            this.buttonAnswer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonUp
@@ -204,12 +205,27 @@
             this.buttonPlay.UseVisualStyleBackColor = false;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
+            // buttonAnswer
+            // 
+            this.buttonAnswer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonAnswer.BackColor = System.Drawing.SystemColors.WindowText;
+            this.buttonAnswer.Font = new System.Drawing.Font("Calibri", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAnswer.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonAnswer.Location = new System.Drawing.Point(730, 523);
+            this.buttonAnswer.Name = "buttonAnswer";
+            this.buttonAnswer.Size = new System.Drawing.Size(176, 113);
+            this.buttonAnswer.TabIndex = 14;
+            this.buttonAnswer.Text = "ANSWER";
+            this.buttonAnswer.UseVisualStyleBackColor = false;
+            this.buttonAnswer.Click += new System.EventHandler(this.buttonAnswer_Click);
+            // 
             // Training
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowText;
             this.ClientSize = new System.Drawing.Size(1582, 913);
+            this.Controls.Add(this.buttonAnswer);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonMotorRandom);
             this.Controls.Add(this.buttonMotorDown);
@@ -245,6 +261,7 @@
         private System.Windows.Forms.Button buttonMotorLeft;
         private System.Windows.Forms.Button buttonMotorUp;
         private System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.Button buttonAnswer;
     }
 }
 
