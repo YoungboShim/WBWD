@@ -45,7 +45,7 @@ body_height = mount_sheet_thickness+fan_height;
 // Right part
 // Gap between fans' center(mm)
 fan_gap = outer_width;
-fan_inner_gap = 4.5;
+fan_inner_gap = 2.5;
 
 // Bridge thickness between fan mound modules(mm)
 bridge_thick = 2;
@@ -75,14 +75,14 @@ module wing()
     difference(){
         translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
         cube([fan_inner_gap, outer_width, bridge_thick], true);
-        translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
+        translate([LoR * (outer_width + fan_inner_gap - wing_width) / 2, fan_gap/2, bridge_thick/2])
         cube([wing_width, wing_height, bridge_thick*2], true);
     }
     // Bottom wing
     difference(){
         translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
         cube([fan_inner_gap, outer_width, bridge_thick], true);
-        translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
+        translate([LoR * (outer_width + fan_inner_gap - wing_width) / 2, -fan_gap/2, bridge_thick/2])
         cube([wing_width, wing_height, bridge_thick*2], true);
     }
 }
