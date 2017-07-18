@@ -157,7 +157,8 @@
             this.comboBoxTest.FormattingEnabled = true;
             this.comboBoxTest.Items.AddRange(new object[] {
             "Training",
-            "Exp#1"});
+            "Exp#1",
+            "Exp#2"});
             this.comboBoxTest.Location = new System.Drawing.Point(49, 17);
             this.comboBoxTest.Name = "comboBoxTest";
             this.comboBoxTest.Size = new System.Drawing.Size(93, 32);

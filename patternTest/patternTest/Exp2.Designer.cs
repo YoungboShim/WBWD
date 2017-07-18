@@ -1,6 +1,6 @@
 ﻿namespace patternTest
 {
-    partial class Exp1
+    partial class Exp2
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Exp1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Exp2));
+            this.labelTrial = new System.Windows.Forms.Label();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.labelTrial = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // labelTrial
+            // 
+            this.labelTrial.AutoSize = true;
+            this.labelTrial.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelTrial.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTrial.ForeColor = System.Drawing.Color.Gray;
+            this.labelTrial.Location = new System.Drawing.Point(0, 818);
+            this.labelTrial.Name = "labelTrial";
+            this.labelTrial.Size = new System.Drawing.Size(68, 35);
+            this.labelTrial.TabIndex = 16;
+            this.labelTrial.Text = "1/48";
             // 
             // buttonPlay
             // 
@@ -46,10 +58,10 @@
             this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPlay.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPlay.ForeColor = System.Drawing.Color.White;
-            this.buttonPlay.Location = new System.Drawing.Point(551, 336);
+            this.buttonPlay.Location = new System.Drawing.Point(543, 334);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(180, 180);
-            this.buttonPlay.TabIndex = 9;
+            this.buttonPlay.TabIndex = 15;
             this.buttonPlay.Text = "Play";
             this.buttonPlay.UseVisualStyleBackColor = false;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
@@ -61,10 +73,10 @@
             this.buttonDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDown.ForeColor = System.Drawing.Color.Black;
             this.buttonDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonDown.Image")));
-            this.buttonDown.Location = new System.Drawing.Point(551, 516);
+            this.buttonDown.Location = new System.Drawing.Point(543, 514);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(180, 180);
-            this.buttonDown.TabIndex = 8;
+            this.buttonDown.TabIndex = 14;
             this.buttonDown.UseVisualStyleBackColor = false;
             this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
             // 
@@ -75,10 +87,10 @@
             this.buttonRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRight.ForeColor = System.Drawing.Color.Black;
             this.buttonRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonRight.Image")));
-            this.buttonRight.Location = new System.Drawing.Point(731, 336);
+            this.buttonRight.Location = new System.Drawing.Point(723, 334);
             this.buttonRight.Name = "buttonRight";
             this.buttonRight.Size = new System.Drawing.Size(180, 180);
-            this.buttonRight.TabIndex = 7;
+            this.buttonRight.TabIndex = 13;
             this.buttonRight.UseVisualStyleBackColor = false;
             this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
             // 
@@ -89,10 +101,10 @@
             this.buttonLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLeft.ForeColor = System.Drawing.Color.Black;
             this.buttonLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonLeft.Image")));
-            this.buttonLeft.Location = new System.Drawing.Point(371, 336);
+            this.buttonLeft.Location = new System.Drawing.Point(363, 334);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(180, 180);
-            this.buttonLeft.TabIndex = 6;
+            this.buttonLeft.TabIndex = 12;
             this.buttonLeft.UseVisualStyleBackColor = false;
             this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
             // 
@@ -103,30 +115,14 @@
             this.buttonUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUp.ForeColor = System.Drawing.Color.Black;
             this.buttonUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonUp.Image")));
-            this.buttonUp.Location = new System.Drawing.Point(551, 156);
+            this.buttonUp.Location = new System.Drawing.Point(543, 154);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(180, 180);
-            this.buttonUp.TabIndex = 5;
+            this.buttonUp.TabIndex = 11;
             this.buttonUp.UseVisualStyleBackColor = false;
             this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
-            // serialPort1
-            // 
-            this.serialPort1.BaudRate = 115200;
-            // 
-            // labelTrial
-            // 
-            this.labelTrial.AutoSize = true;
-            this.labelTrial.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelTrial.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTrial.ForeColor = System.Drawing.Color.Gray;
-            this.labelTrial.Location = new System.Drawing.Point(0, 818);
-            this.labelTrial.Name = "labelTrial";
-            this.labelTrial.Size = new System.Drawing.Size(68, 35);
-            this.labelTrial.TabIndex = 10;
-            this.labelTrial.Text = "1/48";
-            // 
-            // Exp1
+            // Exp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -138,10 +134,10 @@
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonUp);
-            this.Name = "Exp1";
-            this.Text = "Exp1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exp1_FormClosing);
-            this.Load += new System.EventHandler(this.Exp1_Load);
+            this.Name = "Exp2";
+            this.Text = "Exp2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Exp2_FormClosing);
+            this.Load += new System.EventHandler(this.Exp2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,12 +145,12 @@
 
         #endregion
 
+        private System.Windows.Forms.Label labelTrial;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonUp;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.Label labelTrial;
     }
 }
