@@ -25,7 +25,7 @@ bool motorOn[4] = {false, false, false, false};
 bool fanOn[4] = {false, false, false, false};
 
 // Pattern managing variables
-const int duration = 500;// Pattern's duration(ms)
+const int duration = 1200;// Pattern's duration(ms)
 int curTime = 0; // Timer starts from 0 when pattern starts
 bool patternOn = false; // Pattern indicating flag
 const bool initBool[4] = {false, false, false, false};
@@ -61,6 +61,15 @@ void setup()
   pinMode (fan2, OUTPUT);
   pinMode (fan3, OUTPUT);
   pinMode (fan4, OUTPUT);
+
+  digitalWrite(motor1_F, LOW);
+  digitalWrite(motor1_R, LOW);
+  digitalWrite(motor2_F, LOW);
+  digitalWrite(motor2_R, LOW);
+  digitalWrite(motor3_F, LOW);
+  digitalWrite(motor3_R, LOW);
+  digitalWrite(motor4_F, LOW);
+  digitalWrite(motor4_R, LOW);
   
   Serial.begin(115200);
   
@@ -86,7 +95,6 @@ void loopPatternManager()
     {
       // Turn off both fan and motor becuase time is expired
       memcpy(fanOn, initBool, 4 * sizeof(bool));
-      memcpy(motorOn, initBool, 4 * sizeof(bool));
       
       memcpy(fanFormer, initBool, 4 * sizeof(bool));
       memcpy(motorFormer, initBool, 4 * sizeof(bool));
@@ -94,6 +102,10 @@ void loopPatternManager()
       memcpy(motorLatter, initBool, 4 * sizeof(bool));
   
       patternOn = false;
+    }
+    else if(curTime > duration * 0.6)
+    {
+      memcpy(motorOn, initBool, 4 * sizeof(bool));
     }
     else if(curTime > duration  * 0.5)
     {
@@ -105,6 +117,9 @@ void loopPatternManager()
     {
       //Turn off the former bool and assign latter bools
       memcpy(fanOn, initBool, 4 * sizeof(bool));
+    }
+    else if(curTime > duration * 0.1)
+    {
       memcpy(motorOn, initBool, 4 * sizeof(bool));
     }
   }
@@ -302,15 +317,18 @@ void loopFanOnOff()
 // Turn on LRA if true
 void loopMotorOnOff()
 {
+  digitalWrite(motor1_F, LOW);
+  digitalWrite(motor1_R, LOW);
+  digitalWrite(motor2_F, LOW);
+  digitalWrite(motor2_R, LOW);
+  digitalWrite(motor3_F, LOW);
+  digitalWrite(motor3_R, LOW);
+  digitalWrite(motor4_F, LOW);
+  digitalWrite(motor4_R, LOW);
   //Forward
   if(motorOn[0])
   {
     digitalWrite(motor1_F, HIGH);
-    digitalWrite(motor1_R, LOW);
-  }
-  else
-  {
-    digitalWrite(motor1_F, LOW);
     digitalWrite(motor1_R, LOW);
   }
   if(motorOn[1])
@@ -318,19 +336,9 @@ void loopMotorOnOff()
     digitalWrite(motor2_F, HIGH);
     digitalWrite(motor2_R, LOW);
   }
-  else
-  {
-    digitalWrite(motor2_F, LOW);
-    digitalWrite(motor2_R, LOW);
-  }
   if(motorOn[2])
   {
     digitalWrite(motor3_F, HIGH);
-    digitalWrite(motor3_R, LOW);
-  }
-  else
-  {
-    digitalWrite(motor3_F, LOW);
     digitalWrite(motor3_R, LOW);
   }
   if(motorOn[3])
@@ -338,57 +346,32 @@ void loopMotorOnOff()
     digitalWrite(motor4_F, HIGH);
     digitalWrite(motor4_R, LOW);
   }
-  else
-  {
-    digitalWrite(motor4_F, LOW);
-    digitalWrite(motor4_R, LOW);
-  }
   
-  delayCount(6);
-
+  delayCount(3);
+  
   //Reverse
   if(motorOn[0])
   {
     digitalWrite(motor1_F, LOW);
     digitalWrite(motor1_R, HIGH);
   }
-  else
-  {
-    digitalWrite(motor1_F, LOW);
-    digitalWrite(motor1_R, LOW);
-  }
   if(motorOn[1])
   {
     digitalWrite(motor2_F, LOW);
     digitalWrite(motor2_R, HIGH);
-  }
-  else
-  {
-    digitalWrite(motor2_F, LOW);
-    digitalWrite(motor2_R, LOW);
   }
   if(motorOn[2])
   {
     digitalWrite(motor3_F, LOW);
     digitalWrite(motor3_R, HIGH);
   }
-  else
-  {
-    digitalWrite(motor3_F, LOW);
-    digitalWrite(motor3_R, LOW);
-  }
   if(motorOn[3])
   {
     digitalWrite(motor4_F, LOW);
     digitalWrite(motor4_R, HIGH);
   }
-  else
-  {
-    digitalWrite(motor4_F, LOW);
-    digitalWrite(motor4_R, LOW);
-  }
 
-  delayCount(6);
+  delayCount(3);
 }
 
 // Function: delayCount
