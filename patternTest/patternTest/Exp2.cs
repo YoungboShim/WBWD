@@ -20,7 +20,7 @@ namespace patternTest
         int[] stimuliIdx = new int[48];
         int trialNum;
         int[] currPattern = new int[2];
-        int onsetDelay = 500, duration = 1000;
+        int onsetDelay = 500, duration = 1200;
         bool isFan = true;
         string ID, setting;
         TextWriter tw;
