@@ -35,14 +35,14 @@ bool motorFormer[4] = {false, false, false, false};
 bool motorLatter[4] = {false, false, false, false};
 
 // Patterns
-bool downFormer[4] = {true, true, false, false};
-bool downLatter[4] = {false, false, true, true};
-bool upFormer[4] = {false, false, true, true};
-bool upLatter[4] = {true, true, false, false};
-bool rightFormer[4] = {true, false, true, false};
-bool rightLatter[4] = {false, true, false, true};
-bool leftFormer[4] = {false, true, false, true};
-bool leftLatter[4] = {true, false, true, false};
+bool downFormer[4] = {true, false, false, false};
+bool downLatter[4] = {false, false, true, false};
+bool upFormer[4] = {false, false, false, true};
+bool upLatter[4] = {false, true, false, false};
+bool rightFormer[4] = {false, false, true, false};
+bool rightLatter[4] = {false, false, false, true};
+bool leftFormer[4] = {false, true, false, false};
+bool leftLatter[4] = {true, false, false, false};
  
 void setup() 
 { 
@@ -103,24 +103,34 @@ void loopPatternManager()
   
       patternOn = false;
     }
+    else if(curTime > duration * 0.7)
+    {
+      memcpy(motorOn, initBool, 4 * sizeof(bool)); 
+    }
     else if(curTime > duration * 0.6)
     {
-      memcpy(motorOn, initBool, 4 * sizeof(bool));
+      memcpy(motorOn, motorLatter, 4 * sizeof(bool));
     }
     else if(curTime > duration  * 0.5)
     {
-      //Turn off the former bool and assign latter bools
       memcpy(fanOn, fanLatter, 4 * sizeof(bool));
-      memcpy(motorOn, motorLatter, 4 * sizeof(bool));
     }
     else if(curTime > duration  * 0.45)
     {
       //Turn off the former bool and assign latter bools
       memcpy(fanOn, initBool, 4 * sizeof(bool));
     }
+    else if(curTime > duration * 0.2)
+    {
+      memcpy(motorOn, initBool, 4 * sizeof(bool)); 
+    }
     else if(curTime > duration * 0.1)
     {
-      memcpy(motorOn, initBool, 4 * sizeof(bool));
+      memcpy(motorOn, motorFormer, 4 * sizeof(bool));
+    }
+    else if(curTime > 0)
+    {
+      memcpy(fanOn, fanFormer, 4 * sizeof(bool));
     }
   }
 }
@@ -138,8 +148,6 @@ void startPattern(bool fanFormerIn[4], bool motorFormerIn[4], bool fanLatterIn[4
   // Set pattern
   patternOn = true;
   curTime = 0;
-  memcpy(fanOn, fanFormer, 4 * sizeof(bool));
-  memcpy(motorOn, motorFormer, 4 * sizeof(bool));
 }
 
 // Function: loopSerial
