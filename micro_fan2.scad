@@ -21,9 +21,13 @@ $fn = 20;
 // assembly view
 //    translate([0, 0, body_height+tol])
 //    slit();
-translate([outer_width/2, 0, 0])
+translate([outer_width/2, -outer_width/2, 0])
     fan_mount();
-translate([-outer_width/2, 0, 0])
+translate([-outer_width/2, -outer_width/2, 0])
+    fan_mount();
+translate([outer_width/2, outer_width/2, 0])
+    fan_mount();
+translate([-outer_width/2, outer_width/2, 0])
     fan_mount();
 //    rubberband_clamp();
 
@@ -57,7 +61,10 @@ wing_height = outer_width - 2;
 // Left or Right
 LoR = 1;
 
-rotate([0,0,90])
+wing();
+rotate([0,0,270])
+    wire_mount();
+rotate([0,0,180])
     wing();
 rotate([0,0,90])
     wire_mount();
@@ -73,33 +80,22 @@ module wing()
 {
     // Top wing
     difference(){
-        translate([LoR * (outer_width + fan_inner_gap) / 2, fan_gap/2, bridge_thick/2])
-        cube([fan_inner_gap, outer_width, bridge_thick], true);
-        translate([LoR * (outer_width + fan_inner_gap - wing_width) / 2, fan_gap/2, bridge_thick/2])
-        cube([wing_width, wing_height, bridge_thick*2], true);
-    }
-    // Bottom wing
-    difference(){
-        translate([LoR * (outer_width + fan_inner_gap) / 2, -fan_gap/2, bridge_thick/2])
-        cube([fan_inner_gap, outer_width, bridge_thick], true);
-        translate([LoR * (outer_width + fan_inner_gap - wing_width) / 2, -fan_gap/2, bridge_thick/2])
-        cube([wing_width, wing_height, bridge_thick*2], true);
+        translate([0, outer_width + fan_inner_gap, bridge_thick/2])
+        cube([2*outer_width, 2*fan_inner_gap, bridge_thick], true);
+        translate([0, outer_width + fan_inner_gap - 1, bridge_thick/2])
+        cube([2*outer_width - 4, wing_width*2, bridge_thick*2], true);
     }
 }
 
 module wire_mount()
 {
     // Wire mount(bottom)
-    translate([0, (fan_gap + outer_width)/2 + 1.5, 1])
-    cube([outer_width, 3, 2], center=true);
-    translate([0, (fan_gap + outer_width)/2 + 2.25, 4])
-    cube([outer_width, 1.5, 4], center=true);
-
-    // Wire mount(top)
-    translate([0, -(fan_gap + outer_width)/2 - 1.5, 1])
-    cube([outer_width, 3, 2], center=true);
-    translate([0, -(fan_gap + outer_width)/2 - 2.25, 4])
-    cube([outer_width, 1.5, 4], center=true);
+    difference(){
+        translate([0, (fan_gap + outer_width)/2 + 2, 3])
+        cube([2*outer_width, 4, 6], center=true);
+        translate([0, (fan_gap + outer_width)/2+1, 3])
+        cube([2*outer_width + 1, 4, 2], center=true);
+    }
 }
 ///////////// Youngbo Added /////////////
 
@@ -169,8 +165,13 @@ module fan_mount()
         main_body_profile();
         
         // wire channel
-        translate([-inner_width/2, inner_width/2-1, 2])
-        cube([3, 3, 7]);
+        union()
+        {
+            translate([-inner_width/2, inner_width/2-1, 2])
+            cube([3, 3, 7]);
+            translate([-inner_width/2, -inner_width/2-2, 2])
+            cube([3, 3, 7]);
+        }
 
     }
     
