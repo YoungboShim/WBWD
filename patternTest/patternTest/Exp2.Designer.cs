@@ -37,6 +37,7 @@
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.labelWait = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelTrial
@@ -126,12 +127,27 @@
             // 
             this.serialPort1.BaudRate = 115200;
             // 
+            // labelWait
+            // 
+            this.labelWait.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelWait.AutoSize = true;
+            this.labelWait.BackColor = System.Drawing.Color.Black;
+            this.labelWait.Enabled = false;
+            this.labelWait.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWait.ForeColor = System.Drawing.Color.White;
+            this.labelWait.Location = new System.Drawing.Point(556, 49);
+            this.labelWait.Name = "labelWait";
+            this.labelWait.Size = new System.Drawing.Size(146, 73);
+            this.labelWait.TabIndex = 17;
+            this.labelWait.Text = "Wait";
+            // 
             // Exp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowText;
             this.ClientSize = new System.Drawing.Size(1282, 853);
+            this.Controls.Add(this.labelWait);
             this.Controls.Add(this.labelTrial);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonDown);
@@ -156,5 +172,6 @@
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonUp;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Label labelWait;
     }
 }

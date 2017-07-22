@@ -20,7 +20,7 @@ namespace patternTest
         int[] stimuliIdx = new int[48];
         int trialNum;
         int[] currPattern = new int[2];
-        int onsetDelay = 500, duration = 1200;
+        int onsetDelay = 500, duration = 1200, ISI = 1000;
         bool isFan = true;
         string ID, setting;
         TextWriter tw;
@@ -137,6 +137,11 @@ namespace patternTest
 
             if (trialNum < 48)
             {
+                setAnswerButtonColor(Color.Black);
+                labelWait.Enabled = true;
+                Delay(ISI);
+
+                labelWait.Enabled = false;
                 buttonPlay.Enabled = true;
                 buttonPlay.ForeColor = Color.White;
 
