@@ -21,9 +21,11 @@ namespace patternTest
         int trialNum;
         int[] currPattern = new int[2];
         int onsetDelay = 500, duration = 1200, ISI = 1000;
+        int tStart = 0, tEnd = 0;
+        long tAsk = 0, tAnswer = 0;
         bool isFan = true;
         string ID, setting;
-        TextWriter tw;
+        TextWriter tw, twT;
 
         public Exp2()
         {
@@ -36,7 +38,9 @@ namespace patternTest
             this.WindowState = FormWindowState.Maximized;
 
             tw = new StreamWriter("Exp2_" + ID + "_" + setting + ".csv", true);
-            tw.WriteLine("Trial#,Stimuli,Answer,Correct");
+            tw.WriteLine("Name,Mode,Trial#,Stimuli,Fan,Motor,RT,Answer,Correct");
+
+            twT = new StreamWriter("Exp2_condition.csv", true);
 
             shuffleStimuli();
 
@@ -106,6 +110,11 @@ namespace patternTest
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
+            if (trialNum == 0)
+            {
+                tStart = DateTime.Now.Minute;
+            }
+
             buttonPlay.ForeColor = Color.Black;
             buttonPlay.Enabled = false;
 
@@ -115,6 +124,7 @@ namespace patternTest
             buttonPlay.BackColor = Color.Gray;
             currPattern = callPattern();
             playPattern(currPattern);
+            tAsk = DateTime.Now.Ticks;
             Delay(duration);
 
             buttonPlay.ForeColor = Color.Black;
@@ -126,13 +136,16 @@ namespace patternTest
 
         private void scoreAnswer(int answer)
         {
+            tAnswer = DateTime.Now.Ticks;
+            long RT = (tAnswer - tAsk) / 10000;
+
             if ((answer == currPattern[0] && isFan) || (answer == currPattern[1] && !isFan))
             {
-                tw.Write(answer + "," + "1\n");
+                tw.Write(RT + "," + answer + "," + "1\n");
             }
             else
             {
-                tw.Write(answer + "," + "0\n");
+                tw.Write(RT + "," + answer + "," + "0\n");
             }
 
             if (trialNum < 48)
@@ -155,16 +168,28 @@ namespace patternTest
             }
             else
             {
+                tEnd = DateTime.Now.Minute;
+                int tExp = tEnd - tStart;
+                if (tExp < 0)
+                {
+                    tExp += 60;
+                }
+                twT.WriteLine(ID + "," + setting + "," + tExp.ToString());
+
                 setAnswerButtonColor(Color.Black);
                 setAnswerButtonEnable(false);
 
                 labelTrial.Text = "Finished!";
+                buttonPlay.Enabled = true;
+                buttonPlay.ForeColor = Color.White;
+                buttonPlay.Text = "Finish";
             }
         }
 
         private void Exp2_FormClosing(object sender, FormClosingEventArgs e)
         {
             tw.Close();
+            twT.Close();
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
@@ -227,7 +252,7 @@ namespace patternTest
                     break;
             }
 
-            tw.Write(++trialNum + "," + command + ",");
+            tw.Write(ID + "," + setting + "," + ++trialNum + "," + command + "," + command[0] + "," + command[1] + ",");
             serialPort1.WriteLine(command);
         }
 
