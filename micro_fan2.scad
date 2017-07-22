@@ -21,14 +21,14 @@ $fn = 20;
 // assembly view
 //    translate([0, 0, body_height+tol])
 //    slit();
-translate([outer_width/2, -outer_width/2, 0])
+translate([outer_width/2, 0, 0])
     fan_mount();
-translate([-outer_width/2, -outer_width/2, 0])
+translate([-outer_width/2, 0, 0])
     fan_mount();
-translate([outer_width/2, outer_width/2, 0])
-    fan_mount();
-translate([-outer_width/2, outer_width/2, 0])
-    fan_mount();
+//translate([outer_width/2, outer_width/2, 0])
+//    fan_mount();
+//translate([-outer_width/2, outer_width/2, 0])
+//    fan_mount();
 //    rubberband_clamp();
 
 // individual
@@ -61,11 +61,11 @@ wing_height = outer_width - 2;
 // Left or Right
 LoR = 1;
 
-wing();
+//wing();
 rotate([0,0,270])
     wire_mount();
-rotate([0,0,180])
-    wing();
+//rotate([0,0,180])
+//    wing();
 rotate([0,0,90])
     wire_mount();
 
@@ -92,9 +92,9 @@ module wire_mount()
     // Wire mount(bottom)
     difference(){
         translate([0, (fan_gap + outer_width)/2 + 2, 3])
-        cube([2*outer_width, 4, 6], center=true);
-        translate([0, (fan_gap + outer_width)/2+1, 3])
-        cube([2*outer_width + 1, 4, 2], center=true);
+        cube([4, 4, 6], center=true);
+        translate([0, (fan_gap + outer_width)/2 + 1, 3])
+        cube([4 + 1, 4, 2], center=true);
     }
 }
 ///////////// Youngbo Added /////////////
