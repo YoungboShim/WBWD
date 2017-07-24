@@ -3,20 +3,20 @@
 // LRA motor driver pin assignment
 const int motor1_F =  2;
 const int motor1_R =  3;
-const int motor2_F =  4;
-const int motor2_R =  5;
+const int motor2_F =  8;
+const int motor2_R =  9;
 const int motor3_F =  7;
 const int motor3_R =  6;
-const int motor4_F =  8;
-const int motor4_R =  9;
+const int motor4_F =  4;
+const int motor4_R =  5;
 const int motor5_F =  12; // not used
 const int motor5_R =  11; // not used
 
 // Micro fan control pin assignment
 const int fan1 = A0;
-const int fan2 = A1;
+const int fan2 = A5;
 const int fan3 = A3;
-const int fan4 = A5;
+const int fan4 = A1;
 
 // LRA on/off flag
 bool motorOn[4] = {false, false, false, false};
