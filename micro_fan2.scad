@@ -91,10 +91,10 @@ module wire_mount()
 {
     // Wire mount(bottom)
     difference(){
-        translate([0, (fan_gap + outer_width)/2 + 2, 3])
-        cube([4, 4, 6], center=true);
-        translate([0, (fan_gap + outer_width)/2 + 1, 3])
-        cube([4 + 1, 4, 2], center=true);
+        translate([0, (fan_gap + outer_width)/2 + 2, 3.5])
+        cube([4, 7, 7], center=true);
+        translate([0, (fan_gap + outer_width)/2 + 2, 3.5])
+        cube([4 + 1, 5, 5], center=true);
     }
 }
 ///////////// Youngbo Added /////////////

@@ -1,13 +1,13 @@
-outer_width = 20.8;
-wire_mount_length = 4;
-wire_mount_hole = 3;
-stick_width = 6;
+outer_width = 21;
+wire_mount_length = 6;
+wire_mount_hole = 5;
+stick_width = 8;
 stick_thickness = 2;
 
-wire_hole_y = 2;
+wire_hole_y = 5;
 
 wall_y = 1.5;
-wall_z = stick_thickness;
+wall_z = 4;
 
 additional_wire_hole_length = wire_mount_length + 1;
 
@@ -35,14 +35,14 @@ union()
     // 2nd wire hole
     difference()
     {
-        translate([outer_width + 1.5, stick_width, 0])
+        translate([outer_width + 2.5, stick_width, 0])
             cube([additional_wire_hole_length, stick_width, stick_thickness], true);
         translate([outer_width + wire_mount_hole / 2, stick_width, 0])
                 cube([wire_mount_hole, wire_hole_y, stick_thickness + 1], true);
     }
     difference()
     {
-        translate([-(outer_width + 1.5), stick_width, 0])
+        translate([-(outer_width + 2.5), stick_width, 0])
             cube([additional_wire_hole_length, stick_width, stick_thickness], true);
         translate([-(outer_width + wire_mount_hole / 2), stick_width, 0])
                 cube([wire_mount_hole, wire_hole_y, stick_thickness + 1], true);
