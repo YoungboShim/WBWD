@@ -35,14 +35,14 @@ bool motorFormer[4] = {false, false, false, false};
 bool motorLatter[4] = {false, false, false, false};
 
 // Patterns
-bool downFormer[4] = {true, true, false, false};
-bool downLatter[4] = {false, false, true, true};
-bool upFormer[4] = {false, false, true, true};
-bool upLatter[4] = {true, true, false, false};
-bool rightFormer[4] = {true, false, true, false};
-bool rightLatter[4] = {false, true, false, true};
-bool leftFormer[4] = {false, true, false, true};
-bool leftLatter[4] = {true, false, true, false};
+bool downFormer[4] = {true, false, false, false};
+bool downLatter[4] = {false, false, true, false};
+bool upFormer[4] = {false, false, false, true};
+bool upLatter[4] = {false, true, false, false};
+bool rightFormer[4] = {false, false, true, false};
+bool rightLatter[4] = {false, false, false, true};
+bool leftFormer[4] = {false, true, false, false};
+bool leftLatter[4] = {true, false, false, false};
 
 // Serial managing variables
 bool stringComplete = false;
