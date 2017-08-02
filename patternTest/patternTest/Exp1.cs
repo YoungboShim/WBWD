@@ -19,7 +19,7 @@ namespace patternTest
         int[] stimuli = new int[48];
         int[] stimuliIdx = new int[48];
         int trialNum, currPattern;
-        int onsetDelay = 500, duration = 1200, ISI = 1000;
+        int onsetDelay = 500, duration = 1500, ISI = 1000;
         int tStart = 0, tEnd = 0;
         long tAsk = 0, tAnswer = 0;
         bool isFan = true;

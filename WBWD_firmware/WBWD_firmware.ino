@@ -25,7 +25,7 @@ bool motorOn[4] = {false, false, false, false};
 bool fanOn[4] = {false, false, false, false};
 
 // Pattern managing variables
-const int duration = 1200;// Pattern's duration(ms)
+const int duration = 1500;// Pattern's duration(ms)
 int curTime = 0; // Timer starts from 0 when pattern starts
 bool patternOn = false; // Pattern indicating flag
 const bool initBool[4] = {false, false, false, false};

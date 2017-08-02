@@ -18,7 +18,7 @@ namespace patternTest
 
         bool answerMode = false;
         int fanPatternIdx = (int)patterns.none, motorPatternIdx = (int)patterns.none;
-        int onsetDelay = 500, duration = 1200;
+        int onsetDelay = 500, duration = 1500;
 
         Random random;
 
