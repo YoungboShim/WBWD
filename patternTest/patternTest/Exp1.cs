@@ -116,12 +116,9 @@ namespace patternTest
 
             if (trialNum < 48)
             {
-                if (isFan)
-                {
-                    setAnswerButtonColor(Color.Black);
-                    labelWait.Enabled = true;
-                    Delay(ISI);
-                }
+                setAnswerButtonColor(Color.Black);
+                labelWait.Enabled = true;
+                Delay(ISI);
 
                 labelWait.Enabled = false;
                 buttonPlay.Enabled = true;
