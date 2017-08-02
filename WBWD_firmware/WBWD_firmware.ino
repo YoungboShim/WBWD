@@ -43,6 +43,11 @@ bool rightFormer[4] = {true, false, true, false};
 bool rightLatter[4] = {false, true, false, true};
 bool leftFormer[4] = {false, true, false, true};
 bool leftLatter[4] = {true, false, true, false};
+
+// Serial managing variables
+bool stringComplete = false;
+char inData[100];
+int dataIdx = 0;
  
 void setup() 
 { 
@@ -146,17 +151,19 @@ void startPattern(bool fanFormerIn[4], bool motorFormerIn[4], bool fanLatterIn[4
 // Serial input for debug 
 void loopSerial()
 {
-  if(Serial.available() > 0)
+  if(stringComplete)
   {
     char line[100];
     int lineIdx = 0;
-    char c = Serial.read();
-    bool isPattern = false;
-    while(c != '\n' && lineIdx < 100)
+    // Count command chars & init inData
+    while(inData[lineIdx] != '\n' && lineIdx < 100)
     {
-      line[lineIdx++] = c;
-      c = Serial.read();
+      line[lineIdx] = inData[lineIdx];
+      inData[lineIdx] = NULL;
+      lineIdx++;
     }
+    
+    bool isPattern = false;
     char c1 = line[0], c2 = line[1];
     int fanNum, motorNum;
     bool tmpFanFormer[4], tmpFanLatter[4], tmpMotorFormer[4], tmpMotorLatter[4];
@@ -166,8 +173,6 @@ void loopSerial()
       // Debugging cases
       case 'f':
         fanNum = (int)c2 - 49;
-        Serial.println(c2);
-        Serial.println(fanNum);
         if(0 <= fanNum && fanNum < 4)
         {
           fanOn[fanNum] = !fanOn[fanNum];
@@ -201,7 +206,7 @@ void loopSerial()
         }
         break;
       case 'z':
-        //startPattern(tmpFormer, initBool, tmpLatter, initBool);
+        Serial.println("Stop all");
         for(int i=0;i<4;i++)
         {
           fanOn[i] = false;
@@ -270,7 +275,24 @@ void loopSerial()
     }
     if(isPattern)
     {
+      Serial.println("Pattern: " + String(c1) + String(c2));
       startPattern(tmpFanFormer, tmpMotorFormer, tmpFanLatter, tmpMotorLatter);
+    }
+    stringComplete = false;
+  }
+}
+
+void serialEvent()
+{
+  while(Serial.available() && stringComplete == false)
+  {
+    char inChar = Serial.read();
+    inData[dataIdx++] = inChar;
+
+    if(inChar == '\n')
+    {
+      dataIdx = 0;
+      stringComplete = true;
     }
   }
 }
