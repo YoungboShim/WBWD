@@ -66,6 +66,8 @@
             this.buttonPlay.Text = "Play";
             this.buttonPlay.UseVisualStyleBackColor = false;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            this.buttonPlay.MouseEnter += new System.EventHandler(this.buttonPlay_MouseEnter);
+            this.buttonPlay.MouseLeave += new System.EventHandler(this.buttonPlay_MouseLeave);
             // 
             // buttonDown
             // 

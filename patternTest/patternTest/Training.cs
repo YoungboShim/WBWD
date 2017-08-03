@@ -26,6 +26,26 @@ namespace patternTest
         {
             InitializeComponent();
             random = new Random();
+
+            buttonLeft.MouseEnter += buttonRandom_MouseEnter;
+            buttonRight.MouseEnter += buttonRandom_MouseEnter;
+            buttonUp.MouseEnter += buttonRandom_MouseEnter;
+            buttonDown.MouseEnter += buttonRandom_MouseEnter;
+            buttonMotorLeft.MouseEnter += buttonRandom_MouseEnter;
+            buttonMotorRight.MouseEnter += buttonRandom_MouseEnter;
+            buttonMotorUp.MouseEnter += buttonRandom_MouseEnter;
+            buttonMotorDown.MouseEnter += buttonRandom_MouseEnter;
+            buttonMotorRandom.MouseEnter += buttonRandom_MouseEnter;
+
+            buttonLeft.MouseLeave += buttonRandom_MouseLeave;
+            buttonRight.MouseLeave += buttonRandom_MouseLeave;
+            buttonUp.MouseLeave += buttonRandom_MouseLeave;
+            buttonDown.MouseLeave += buttonRandom_MouseLeave;
+            buttonMotorLeft.MouseLeave += buttonRandom_MouseLeave;
+            buttonMotorRight.MouseLeave += buttonRandom_MouseLeave;
+            buttonMotorUp.MouseLeave += buttonRandom_MouseLeave;
+            buttonMotorDown.MouseLeave += buttonRandom_MouseLeave;
+            buttonMotorRandom.MouseLeave += buttonRandom_MouseLeave;
         }
 
         public void SetValues(SerialPort serialPort)
@@ -318,6 +338,21 @@ namespace patternTest
             buttonMotorDown.Enabled = enable;
             buttonMotorLeft.Enabled = enable;
             buttonMotorRight.Enabled = enable;
+        }
+
+        private void buttonRandom_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.BackColor = Color.DarkBlue;
+        }
+
+        private void buttonRandom_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if(answerMode)
+                btn.BackColor = Color.Gray;
+            else
+                btn.BackColor = Color.Black;
         }
 
         private void playPattern(int[] pattern)

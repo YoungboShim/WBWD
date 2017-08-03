@@ -22,13 +22,23 @@ namespace patternTest
         int onsetDelay = 500, duration = 1500, ISI = 1000;
         int tStart = 0, tEnd = 0;
         long tAsk = 0, tAnswer = 0;
-        bool isFan = true;
+        bool isFan = true, answerMode = false;
         string ID, setting;
         TextWriter tw, twT;
 
         public Exp1()
         {
             InitializeComponent();
+
+            buttonLeft.MouseEnter += buttonPlay_MouseEnter;
+            buttonRight.MouseEnter += buttonPlay_MouseEnter;
+            buttonUp.MouseEnter += buttonPlay_MouseEnter;
+            buttonDown.MouseEnter += buttonPlay_MouseEnter;
+
+            buttonLeft.MouseLeave += buttonPlay_MouseLeave;
+            buttonRight.MouseLeave += buttonPlay_MouseLeave;
+            buttonUp.MouseLeave += buttonPlay_MouseLeave;
+            buttonDown.MouseLeave += buttonPlay_MouseLeave;
         }
 
         private void Exp1_Load(object sender, EventArgs e)
@@ -38,6 +48,7 @@ namespace patternTest
 
             tw = new StreamWriter("Exp1_" + ID + "_" + setting + ".csv", true);
             tw.WriteLine("Name,Mode,Trial#,Stimuli,Fan,Motor,RT,Answer,Correct");
+            tw.Flush();
 
             twT = new StreamWriter("Exp1_condition.csv", true);
 
@@ -108,16 +119,19 @@ namespace patternTest
             if(answer == currPattern)
             {
                 tw.Write(RT + "," + answer + "," + "1\n");
+                tw.Flush();
             }
             else
             {
                 tw.Write(RT + "," + answer + "," + "0\n");
+                tw.Flush();
             }
 
             if (trialNum < 48)
             {
                 setAnswerButtonColor(Color.Black);
                 labelWait.Enabled = true;
+                setAnswerButtonEnable(false);
                 Delay(ISI);
 
                 labelWait.Enabled = false;
@@ -138,15 +152,17 @@ namespace patternTest
                     tExp += 60;
                 }
                 twT.WriteLine(ID + "," + setting + "," + tExp.ToString());
+                twT.Flush();
 
                 setAnswerButtonColor(Color.Black);
                 setAnswerButtonEnable(false);
 
                 labelTrial.Text = "Finished!";
-                buttonPlay.Enabled = true;
-                buttonPlay.ForeColor = Color.White;
-                buttonPlay.Text = "Finish";
+                buttonPlay.Enabled = false;
+                labelWait.Text = "Finished!";
+                labelWait.Enabled = true;
             }
+            answerMode = false;
         }
 
         private void playPattern(int pattern)
@@ -181,12 +197,29 @@ namespace patternTest
             }
 
             tw.Write(ID + "," + setting + "," + ++trialNum + "," + command + "," + command[0] + "," + command[1] + ",");
+            tw.Flush();
             serialPort1.WriteLine(command);
+            answerMode = true;
         }
 
         private int callPattern()
         {
             return stimuli[trialNum];
+        }
+
+        private void buttonPlay_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.BackColor = Color.DarkBlue;
+        }
+
+        private void buttonPlay_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (answerMode)
+                btn.BackColor = Color.Gray;
+            else
+                btn.BackColor = Color.Black;
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)

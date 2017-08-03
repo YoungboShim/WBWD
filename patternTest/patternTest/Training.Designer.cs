@@ -47,8 +47,8 @@
             // buttonUp
             // 
             this.buttonUp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonUp.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonUp.BackColor = System.Drawing.Color.Black;
+            this.buttonUp.ForeColor = System.Drawing.Color.White;
             this.buttonUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonUp.Image")));
             this.buttonUp.Location = new System.Drawing.Point(394, 67);
             this.buttonUp.Name = "buttonUp";
@@ -60,8 +60,8 @@
             // buttonLeft
             // 
             this.buttonLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonLeft.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonLeft.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonLeft.BackColor = System.Drawing.Color.Black;
+            this.buttonLeft.ForeColor = System.Drawing.Color.White;
             this.buttonLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonLeft.Image")));
             this.buttonLeft.Location = new System.Drawing.Point(214, 247);
             this.buttonLeft.Name = "buttonLeft";
@@ -73,8 +73,8 @@
             // buttonRight
             // 
             this.buttonRight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonRight.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonRight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonRight.BackColor = System.Drawing.Color.Black;
+            this.buttonRight.ForeColor = System.Drawing.Color.White;
             this.buttonRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonRight.Image")));
             this.buttonRight.Location = new System.Drawing.Point(574, 247);
             this.buttonRight.Name = "buttonRight";
@@ -86,8 +86,8 @@
             // buttonDown
             // 
             this.buttonDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonDown.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonDown.BackColor = System.Drawing.Color.Black;
+            this.buttonDown.ForeColor = System.Drawing.Color.White;
             this.buttonDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonDown.Image")));
             this.buttonDown.Location = new System.Drawing.Point(394, 427);
             this.buttonDown.Name = "buttonDown";
@@ -99,9 +99,9 @@
             // buttonRandom
             // 
             this.buttonRandom.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonRandom.BackColor = System.Drawing.SystemColors.WindowText;
+            this.buttonRandom.BackColor = System.Drawing.Color.Black;
             this.buttonRandom.Font = new System.Drawing.Font("돋움", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.buttonRandom.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonRandom.ForeColor = System.Drawing.Color.White;
             this.buttonRandom.Location = new System.Drawing.Point(394, 247);
             this.buttonRandom.Name = "buttonRandom";
             this.buttonRandom.Size = new System.Drawing.Size(180, 180);
@@ -109,6 +109,8 @@
             this.buttonRandom.Text = "FAN";
             this.buttonRandom.UseVisualStyleBackColor = false;
             this.buttonRandom.Click += new System.EventHandler(this.buttonRandom_Click);
+            this.buttonRandom.MouseEnter += new System.EventHandler(this.buttonRandom_MouseEnter);
+            this.buttonRandom.MouseLeave += new System.EventHandler(this.buttonRandom_MouseLeave);
             // 
             // serialPort1
             // 
@@ -126,9 +128,9 @@
             // buttonMotorRandom
             // 
             this.buttonMotorRandom.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonMotorRandom.BackColor = System.Drawing.SystemColors.WindowText;
+            this.buttonMotorRandom.BackColor = System.Drawing.Color.Black;
             this.buttonMotorRandom.Font = new System.Drawing.Font("돋움", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.buttonMotorRandom.ForeColor = System.Drawing.SystemColors.Window;
+            this.buttonMotorRandom.ForeColor = System.Drawing.Color.White;
             this.buttonMotorRandom.Location = new System.Drawing.Point(1058, 247);
             this.buttonMotorRandom.Name = "buttonMotorRandom";
             this.buttonMotorRandom.Size = new System.Drawing.Size(180, 180);
@@ -140,8 +142,8 @@
             // buttonMotorDown
             // 
             this.buttonMotorDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonMotorDown.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonMotorDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonMotorDown.BackColor = System.Drawing.Color.Black;
+            this.buttonMotorDown.ForeColor = System.Drawing.Color.White;
             this.buttonMotorDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorDown.Image")));
             this.buttonMotorDown.Location = new System.Drawing.Point(1058, 427);
             this.buttonMotorDown.Name = "buttonMotorDown";
@@ -153,8 +155,8 @@
             // buttonMotorRight
             // 
             this.buttonMotorRight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonMotorRight.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonMotorRight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonMotorRight.BackColor = System.Drawing.Color.Black;
+            this.buttonMotorRight.ForeColor = System.Drawing.Color.White;
             this.buttonMotorRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorRight.Image")));
             this.buttonMotorRight.Location = new System.Drawing.Point(1238, 247);
             this.buttonMotorRight.Name = "buttonMotorRight";
@@ -166,8 +168,8 @@
             // buttonMotorLeft
             // 
             this.buttonMotorLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonMotorLeft.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonMotorLeft.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonMotorLeft.BackColor = System.Drawing.Color.Black;
+            this.buttonMotorLeft.ForeColor = System.Drawing.Color.White;
             this.buttonMotorLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorLeft.Image")));
             this.buttonMotorLeft.Location = new System.Drawing.Point(878, 247);
             this.buttonMotorLeft.Name = "buttonMotorLeft";
@@ -179,8 +181,8 @@
             // buttonMotorUp
             // 
             this.buttonMotorUp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonMotorUp.BackColor = System.Drawing.SystemColors.WindowText;
-            this.buttonMotorUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonMotorUp.BackColor = System.Drawing.Color.Black;
+            this.buttonMotorUp.ForeColor = System.Drawing.Color.White;
             this.buttonMotorUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonMotorUp.Image")));
             this.buttonMotorUp.Location = new System.Drawing.Point(1058, 67);
             this.buttonMotorUp.Name = "buttonMotorUp";
