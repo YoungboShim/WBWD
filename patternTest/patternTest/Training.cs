@@ -15,10 +15,12 @@ namespace patternTest
     public partial class Training : Form
     {
         enum patterns { up, down, left, right, none, random };
+        enum modes { fan, vib, fan_noise, vib_noise}
 
         bool answerMode = false;
         int fanPatternIdx = (int)patterns.none, motorPatternIdx = (int)patterns.none;
         int onsetDelay = 500, duration = 1500;
+        int trainMode = (int)modes.fan;
 
         Random random;
 
@@ -31,33 +33,16 @@ namespace patternTest
             buttonRight.MouseEnter += buttonRandom_MouseEnter;
             buttonUp.MouseEnter += buttonRandom_MouseEnter;
             buttonDown.MouseEnter += buttonRandom_MouseEnter;
-            buttonMotorLeft.MouseEnter += buttonRandom_MouseEnter;
-            buttonMotorRight.MouseEnter += buttonRandom_MouseEnter;
-            buttonMotorUp.MouseEnter += buttonRandom_MouseEnter;
-            buttonMotorDown.MouseEnter += buttonRandom_MouseEnter;
-            buttonMotorRandom.MouseEnter += buttonRandom_MouseEnter;
 
             buttonLeft.MouseLeave += buttonRandom_MouseLeave;
             buttonRight.MouseLeave += buttonRandom_MouseLeave;
             buttonUp.MouseLeave += buttonRandom_MouseLeave;
             buttonDown.MouseLeave += buttonRandom_MouseLeave;
-            buttonMotorLeft.MouseLeave += buttonRandom_MouseLeave;
-            buttonMotorRight.MouseLeave += buttonRandom_MouseLeave;
-            buttonMotorUp.MouseLeave += buttonRandom_MouseLeave;
-            buttonMotorDown.MouseLeave += buttonRandom_MouseLeave;
-            buttonMotorRandom.MouseLeave += buttonRandom_MouseLeave;
         }
 
         public void SetValues(SerialPort serialPort)
         {
             this.serialPort1 = serialPort;
-        }
-
-        private void logWrite(string s)
-        {
-            textBoxLog.Text += s + "\r\n";
-            textBoxLog.Select(textBoxLog.TextLength, 0);
-            textBoxLog.ScrollToCaret();
         }
 
         // Turn off fan's button
@@ -76,28 +61,6 @@ namespace patternTest
                     break;
                 case (int)patterns.right:
                     buttonRight.BackColor = color;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        // Turn off motor's button
-        private void motorBtnColor(int idx, Color color)
-        {
-            switch (idx)
-            {
-                case (int)patterns.up:
-                    buttonMotorUp.BackColor = color;
-                    break;
-                case (int)patterns.down:
-                    buttonMotorDown.BackColor = color;
-                    break;
-                case (int)patterns.left:
-                    buttonMotorLeft.BackColor = color;
-                    break;
-                case (int)patterns.right:
-                    buttonMotorRight.BackColor = color;
                     break;
                 default:
                     break;
@@ -123,41 +86,11 @@ namespace patternTest
                 answerMode = false;
                 buttonRandom.Enabled = true;
                 buttonRandom.ForeColor = Color.White;
-                setMotorButtonEnable(true);
                 return;
             }
             else
             {
                 playFan(btnIdx);
-                return;
-            }
-        }
-
-        private void clickMotorBtn(int btnIdx)
-        {
-            if (answerMode)
-            {
-                if (motorPatternIdx == btnIdx)
-                {
-                    motorBtnColor(btnIdx, Color.Green);
-                    Delay(200);
-                }
-                else
-                {
-                    motorBtnColor(btnIdx, Color.Red);
-                    motorBtnColor(motorPatternIdx, Color.Green);
-                    Delay(200);
-                }
-                setMotorButtonColor(Color.Black);
-                answerMode = false;
-                buttonMotorRandom.Enabled = true;
-                buttonMotorRandom.ForeColor = Color.White;
-                setFanButtonEnable(true);
-                return;
-            }
-            else
-            {
-                playMotor(btnIdx);
                 return;
             }
         }
@@ -170,32 +103,6 @@ namespace patternTest
         private void buttonRight_Click(object sender, EventArgs e)
         {
             clickFanBtn((int)patterns.right);
-        }
-
-        private void buttonMotorUp_Click(object sender, EventArgs e)
-        {
-            clickMotorBtn((int)patterns.up);
-        }
-
-        private void buttonMotorDown_Click(object sender, EventArgs e)
-        {
-            clickMotorBtn((int)patterns.down);
-        }
-
-        private void buttonMotorLeft_Click(object sender, EventArgs e)
-        {
-            clickMotorBtn((int)patterns.left);
-        }
-
-        private void buttonMotorRight_Click(object sender, EventArgs e)
-        {
-            clickMotorBtn((int)patterns.right);
-        }
-
-        private void buttonMotorRandom_Click(object sender, EventArgs e)
-        {
-            motorPatternIdx = random.Next(4);
-            playMotor((int)patterns.random);
         }
 
         private void buttonRandom_Click(object sender, EventArgs e)
@@ -222,9 +129,27 @@ namespace patternTest
 
         private void playFan(int pattern)
         {
-            int[] tmpPattern = { pattern, (int)patterns.none };
+            int[] tmpPattern = { (int)patterns.none, (int)patterns.none };
+            switch (trainMode)
+            {
+                case (int)modes.fan:
+                    tmpPattern[0] = pattern;
+                    break;
+                case (int)modes.vib:
+                    tmpPattern[1] = pattern;
+                    break;
+                case (int)modes.fan_noise:
+                    tmpPattern[0] = pattern;
+                    tmpPattern[1] = random.Next(4);
+                    break;
+                case (int)modes.vib_noise:
+                    tmpPattern[1] = pattern;
+                    tmpPattern[0] = random.Next(4);
+                    break;
+                default:
+                    break;
+            }
             setFanButtonEnable(false);
-            setMotorButtonEnable(false);
             buttonRandom.ForeColor = Color.Black;
             Delay(onsetDelay);
             buttonRandom.ForeColor = Color.White;
@@ -245,7 +170,14 @@ namespace patternTest
                     buttonRight.BackColor = Color.Gray;
                     break;
                 case (int)patterns.random:
-                    tmpPattern[0] = fanPatternIdx;
+                    if(trainMode == (int)modes.fan || trainMode == (int)modes.fan_noise)
+                    {
+                        tmpPattern[0] = fanPatternIdx;
+                    }
+                    else
+                    {
+                        tmpPattern[1] = fanPatternIdx;
+                    }
                     answerMode = true;
                     buttonRandom.Enabled = false;
                     buttonRandom.ForeColor = Color.Black;
@@ -264,50 +196,6 @@ namespace patternTest
             setFanButtonEnable(true);
         }
 
-        private void playMotor(int pattern)
-        {
-            int[] tmpPattern = { (int)patterns.none, pattern };
-            setFanButtonEnable(false);
-            setMotorButtonEnable(false);
-            buttonMotorRandom.ForeColor = Color.Black;
-            Delay(onsetDelay);
-            buttonMotorRandom.ForeColor = Color.White;
-            buttonMotorRandom.BackColor = Color.Gray;
-
-            switch (pattern)
-            {
-                case (int)patterns.up:
-                    buttonMotorUp.BackColor = Color.Gray;
-                    break;
-                case (int)patterns.down:
-                    buttonMotorDown.BackColor = Color.Gray;
-                    break;
-                case (int)patterns.left:
-                    buttonMotorLeft.BackColor = Color.Gray;
-                    break;
-                case (int)patterns.right:
-                    buttonMotorRight.BackColor = Color.Gray;
-                    break;
-                case (int)patterns.random:
-                    tmpPattern[1] = motorPatternIdx;
-                    answerMode = true;
-                    buttonMotorRandom.Enabled = false;
-                    buttonMotorRandom.ForeColor = Color.Black;
-                    break;
-                default:
-                    break;
-            }
-
-            playPattern(tmpPattern);
-            Delay(duration);
-            if (answerMode)
-                setMotorButtonColor(Color.Gray);
-            else
-                setMotorButtonColor(Color.Black);
-            buttonMotorRandom.BackColor = Color.Black;
-            setMotorButtonEnable(true);
-        }
-
         private void setFanButtonColor(Color color)
         {
             buttonUp.BackColor = color;
@@ -324,22 +212,6 @@ namespace patternTest
             buttonRight.Enabled = enable;
         }
 
-        private void setMotorButtonColor(Color color)
-        {
-            buttonMotorUp.BackColor = color;
-            buttonMotorDown.BackColor = color;
-            buttonMotorLeft.BackColor = color;
-            buttonMotorRight.BackColor = color;
-        }
-
-        private void setMotorButtonEnable(bool enable)
-        {
-            buttonMotorUp.Enabled = enable;
-            buttonMotorDown.Enabled = enable;
-            buttonMotorLeft.Enabled = enable;
-            buttonMotorRight.Enabled = enable;
-        }
-
         private void buttonRandom_MouseEnter(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -353,6 +225,28 @@ namespace patternTest
                 btn.BackColor = Color.Gray;
             else
                 btn.BackColor = Color.Black;
+        }
+
+        private void comboBoxMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            trainMode = comboBoxMode.SelectedIndex;
+            switch(trainMode)
+            {
+                case (int)modes.fan:
+                    buttonRandom.Text = "FAN";
+                    break;
+                case (int)modes.vib:
+                    buttonRandom.Text = "VIB";
+                    break;
+                case (int)modes.fan_noise:
+                    buttonRandom.Text = "FAN+";
+                    break;
+                case (int)modes.vib_noise:
+                    buttonRandom.Text = "VIB";
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void playPattern(int[] pattern)
