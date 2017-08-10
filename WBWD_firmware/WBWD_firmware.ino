@@ -203,7 +203,7 @@ void loopSerial()
           motorOn[motorNum] = !motorOn[motorNum];
           Serial.print("Motor");
           Serial.print(c2);
-          if(motorOn[fanNum])
+          if(motorOn[motorNum])
           {
             Serial.print(": ON\n");
           }
