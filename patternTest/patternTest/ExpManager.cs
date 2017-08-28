@@ -16,6 +16,7 @@ namespace patternTest
         Training train;
         Exp1 exp1;
         Exp2 exp2;
+        Exp3 exp3;
         int testIdx = -1;
         bool isFan = true;
         public ExpManager()
@@ -91,6 +92,11 @@ namespace patternTest
                     exp2 = new Exp2();
                     exp2.SetValues(serialPort1, textBoxID.Text, isFan);
                     exp2.Show();
+                    break;
+                case 3:
+                    exp3 = new Exp3();
+                    exp3.SetValues(serialPort1, textBoxID.Text);
+                    exp3.Show();
                     break;
                 default:
                     break;

@@ -58,6 +58,12 @@
     <Compile Include="Exp2.Designer.cs">
       <DependentUpon>Exp2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exp3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exp3.Designer.cs">
+      <DependentUpon>Exp3.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExpManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Exp2.resx">
       <DependentUpon>Exp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exp3.resx">
+      <DependentUpon>Exp3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExpManager.resx">
       <DependentUpon>ExpManager.cs</DependentUpon>
