@@ -35,14 +35,10 @@ bool motorFormer[4] = {false, false, false, false};
 bool motorLatter[4] = {false, false, false, false};
 
 // Patterns
-bool downFormer[4] = {true, false, false, false};
-bool downLatter[4] = {false, false, true, false};
-bool upFormer[4] = {false, false, false, true};
-bool upLatter[4] = {false, true, false, false};
-bool rightFormer[4] = {false, false, true, false};
-bool rightLatter[4] = {false, false, false, true};
-bool leftFormer[4] = {false, true, false, false};
-bool leftLatter[4] = {true, false, false, false};
+bool tactorA[4] = {true, false, false, false};
+bool tactorB[4] = {false, true, false, false};
+bool tactorC[4] = {false, false, true, false};
+bool tactorD[4] = {false, false, false, true};
 
 // Serial managing variables
 bool stringComplete = false;
@@ -172,7 +168,7 @@ void loopSerial()
     }
     
     bool isPattern = false;
-    char c1 = line[0], c2 = line[1];
+    char c1 = line[0], c2 = line[1], c3 = line[2], c4 = line[3];
     int fanNum, motorNum;
     bool tmpFanFormer[4], tmpFanLatter[4], tmpMotorFormer[4], tmpMotorLatter[4];
     
@@ -203,7 +199,7 @@ void loopSerial()
           motorOn[motorNum] = !motorOn[motorNum];
           Serial.print("Motor");
           Serial.print(c2);
-          if(motorOn[motorNum])
+          if(motorOn[fanNum])
           {
             Serial.print(": ON\n");
           }
@@ -223,67 +219,119 @@ void loopSerial()
         patternOn = false;
         break;
       // Pattern cogition
-      case 'u':
-        memcpy(tmpFanFormer, upFormer, 4 * sizeof(bool));
-        memcpy(tmpFanLatter, upLatter, 4 * sizeof(bool));
+      case 'a':
+        memcpy(tmpFanFormer, tactorA, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'b':
+        memcpy(tmpFanFormer, tactorB, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+      case 'c':
+        memcpy(tmpFanFormer, tactorC, 4 * sizeof(bool));
         isPattern = true;
         break;
       case 'd':
-        memcpy(tmpFanFormer, downFormer, 4 * sizeof(bool));
-        memcpy(tmpFanLatter, downLatter, 4 * sizeof(bool));
-        isPattern = true;
-        break;
-      case 'l':
-        memcpy(tmpFanFormer, leftFormer, 4 * sizeof(bool));
-        memcpy(tmpFanLatter, leftLatter, 4 * sizeof(bool));
-        isPattern = true;
-        break;
-      case 'r':
-        memcpy(tmpFanFormer, rightFormer, 4 * sizeof(bool));
-        memcpy(tmpFanLatter, rightLatter, 4 * sizeof(bool));
+        memcpy(tmpFanFormer, tactorD, 4 * sizeof(bool));
         isPattern = true;
         break;
       case 'n':
         memcpy(tmpFanFormer, initBool, 4 * sizeof(bool));
-        memcpy(tmpFanLatter, initBool, 4 * sizeof(bool));
         isPattern = true;
         break;
       default:
         break;
     }
-
     if(isPattern)
     {
       switch(c2)
       {
-        case 'u':
-        memcpy(tmpMotorFormer, upFormer, 4 * sizeof(bool));
-        memcpy(tmpMotorLatter, upLatter, 4 * sizeof(bool));
-        break;
-      case 'd':
-        memcpy(tmpMotorFormer, downFormer, 4 * sizeof(bool));
-        memcpy(tmpMotorLatter, downLatter, 4 * sizeof(bool));
-        break;
-      case 'l':
-        memcpy(tmpMotorFormer, leftFormer, 4 * sizeof(bool));
-        memcpy(tmpMotorLatter, leftLatter, 4 * sizeof(bool));
-        break;
-      case 'r':
-        memcpy(tmpMotorFormer, rightFormer, 4 * sizeof(bool));
-        memcpy(tmpMotorLatter, rightLatter, 4 * sizeof(bool));
-        break;
-      case 'n':
-        memcpy(tmpMotorFormer, initBool, 4 * sizeof(bool));
-        memcpy(tmpMotorLatter, initBool, 4 * sizeof(bool));
-        break;
-      default:
-        isPattern = false;
-        break;
+        case 'a':
+          memcpy(tmpMotorFormer, tactorA, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'b':
+          memcpy(tmpMotorFormer, tactorB, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'c':
+          memcpy(tmpMotorFormer, tactorC, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'd':
+          memcpy(tmpMotorFormer, tactorD, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'n':
+          memcpy(tmpMotorFormer, initBool, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        default:
+          isPattern = false;
+          break;
       }
     }
     if(isPattern)
     {
-      Serial.println("Pattern: " + String(c1) + String(c2));
+      switch(c3)
+      {
+        case 'a':
+        memcpy(tmpFanLatter, tactorA, 4 * sizeof(bool));
+        isPattern = true;
+        break;
+        case 'b':
+          memcpy(tmpFanLatter, tactorB, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'c':
+          memcpy(tmpFanLatter, tactorC, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'd':
+          memcpy(tmpFanLatter, tactorD, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'n':
+          memcpy(tmpFanLatter, initBool, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        default:
+          isPattern = false;
+          break;
+      }
+    }
+    if(isPattern)
+    {
+      switch(c4)
+      {
+        case 'a':
+          memcpy(tmpMotorLatter, tactorA, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'b':
+          memcpy(tmpMotorLatter, tactorB, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'c':
+          memcpy(tmpMotorLatter, tactorC, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'd':
+          memcpy(tmpMotorLatter, tactorD, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        case 'n':
+          memcpy(tmpMotorLatter, initBool, 4 * sizeof(bool));
+          isPattern = true;
+          break;
+        default:
+          isPattern = false;
+          break;
+      }
+    }
+    if(isPattern)
+    {
+      Serial.println("Pattern: " + String(c1) + String(c2) + String(c3) + String(c4));
       startPattern(tmpFanFormer, tmpMotorFormer, tmpFanLatter, tmpMotorLatter);
     }
     stringComplete = false;
