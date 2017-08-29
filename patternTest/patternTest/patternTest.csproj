@@ -93,6 +93,9 @@
     <EmbeddedResource Include="Exp3.resx">
       <DependentUpon>Exp3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Exp4.resx">
+      <DependentUpon>Exp4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExpManager.resx">
       <DependentUpon>ExpManager.cs</DependentUpon>
     </EmbeddedResource>

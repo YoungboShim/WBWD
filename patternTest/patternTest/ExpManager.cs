@@ -17,6 +17,7 @@ namespace patternTest
         Exp1 exp1;
         Exp2 exp2;
         Exp3 exp3;
+        Exp4 exp4;
         int testIdx = -1;
         bool isFan = true;
         public ExpManager()
@@ -97,6 +98,11 @@ namespace patternTest
                     exp3 = new Exp3();
                     exp3.SetValues(serialPort1, textBoxID.Text);
                     exp3.Show();
+                    break;
+                case 4:
+                    exp4 = new Exp4();
+                    exp4.SetValues(serialPort1, textBoxID.Text, isFan);
+                    exp4.Show();
                     break;
                 default:
                     break;

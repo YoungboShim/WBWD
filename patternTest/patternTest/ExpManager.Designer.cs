@@ -159,7 +159,8 @@
             "Training",
             "Exp#1",
             "Exp#2",
-            "Exp#3"});
+            "Exp#3",
+            "Exp#4"});
             this.comboBoxTest.Location = new System.Drawing.Point(49, 17);
             this.comboBoxTest.Name = "comboBoxTest";
             this.comboBoxTest.Size = new System.Drawing.Size(93, 32);
