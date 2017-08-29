@@ -121,7 +121,7 @@ namespace patternTest
 
         private void buttonAnswer_Click(object sender, EventArgs e)
         {
-            scoreAnswer(((Button)sender).Text);
+            scoreAnswer(((Button)sender).Tag.ToString());
         }
 
         private void playPattern(string pattern)
