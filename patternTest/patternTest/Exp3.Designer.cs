@@ -73,9 +73,10 @@
             this.panelAnswer.Controls.Add(this.button5);
             this.panelAnswer.Controls.Add(this.button2);
             this.panelAnswer.Controls.Add(this.button1);
+            this.panelAnswer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAnswer.Location = new System.Drawing.Point(0, 0);
             this.panelAnswer.Name = "panelAnswer";
-            this.panelAnswer.Size = new System.Drawing.Size(860, 850);
+            this.panelAnswer.Size = new System.Drawing.Size(1282, 853);
             this.panelAnswer.TabIndex = 0;
             // 
             // button16
@@ -267,7 +268,7 @@
             this.labelTrial.AutoSize = true;
             this.labelTrial.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelTrial.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTrial.ForeColor = System.Drawing.Color.Gray;
+            this.labelTrial.ForeColor = System.Drawing.Color.White;
             this.labelTrial.Location = new System.Drawing.Point(0, 815);
             this.labelTrial.Name = "labelTrial";
             this.labelTrial.Size = new System.Drawing.Size(68, 35);
