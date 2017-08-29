@@ -156,9 +156,8 @@
             this.comboBoxTest.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTest.FormattingEnabled = true;
             this.comboBoxTest.Items.AddRange(new object[] {
-            "Training",
-            "Exp#1",
-            "Exp#2",
+            "Training#3",
+            "Training#4",
             "Exp#3",
             "Exp#4"});
             this.comboBoxTest.Location = new System.Drawing.Point(49, 17);

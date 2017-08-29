@@ -13,9 +13,8 @@ namespace patternTest
 {
     public partial class ExpManager : Form
     {
-        Training train;
-        Exp1 exp1;
-        Exp2 exp2;
+        Training3 train3;
+        Training4 train4;
         Exp3 exp3;
         Exp4 exp4;
         int testIdx = -1;
@@ -80,28 +79,23 @@ namespace patternTest
             switch(testIdx)
             {
                 case 0:
-                    train = new Training();
-                    train.SetValues(serialPort1);                    
-                    train.Show();
+                    train3 = new Training3();
+                    train3.SetValues(serialPort1);
+                    train3.Show();
                     break;
                 case 1:
-                    exp1 = new Exp1();
-                    exp1.SetValues(serialPort1, textBoxID.Text, isFan);
-                    exp1.Show();
+                    train4 = new Training4();
+                    train4.SetValues(serialPort1);
+                    train4.Show();
                     break;
                 case 2:
-                    exp2 = new Exp2();
-                    exp2.SetValues(serialPort1, textBoxID.Text, isFan);
-                    exp2.Show();
-                    break;
-                case 3:
                     exp3 = new Exp3();
                     exp3.SetValues(serialPort1, textBoxID.Text);
                     exp3.Show();
                     break;
-                case 4:
+                case 3:
                     exp4 = new Exp4();
-                    exp4.SetValues(serialPort1, textBoxID.Text, isFan);
+                    exp4.SetValues(serialPort1, textBoxID.Text);
                     exp4.Show();
                     break;
                 default:

@@ -48,6 +48,40 @@ namespace patternTest
             button14.Click += buttonAnswer_Click;
             button15.Click += buttonAnswer_Click;
             button16.Click += buttonAnswer_Click;
+
+            button1.MouseEnter += buttonTactor_MouseEnter;
+            button2.MouseEnter += buttonTactor_MouseEnter;
+            button3.MouseEnter += buttonTactor_MouseEnter;
+            button4.MouseEnter += buttonTactor_MouseEnter;
+            button5.MouseEnter += buttonTactor_MouseEnter;
+            button6.MouseEnter += buttonTactor_MouseEnter;
+            button7.MouseEnter += buttonTactor_MouseEnter;
+            button8.MouseEnter += buttonTactor_MouseEnter;
+            button9.MouseEnter += buttonTactor_MouseEnter;
+            button10.MouseEnter += buttonTactor_MouseEnter;
+            button11.MouseEnter += buttonTactor_MouseEnter;
+            button12.MouseEnter += buttonTactor_MouseEnter;
+            button13.MouseEnter += buttonTactor_MouseEnter;
+            button14.MouseEnter += buttonTactor_MouseEnter;
+            button15.MouseEnter += buttonTactor_MouseEnter;
+            button16.MouseEnter += buttonTactor_MouseEnter;
+
+            button1.MouseLeave += buttonTactor_MouseLeave;
+            button2.MouseLeave += buttonTactor_MouseLeave;
+            button3.MouseLeave += buttonTactor_MouseLeave;
+            button4.MouseLeave += buttonTactor_MouseLeave;
+            button5.MouseLeave += buttonTactor_MouseLeave;
+            button6.MouseLeave += buttonTactor_MouseLeave;
+            button7.MouseLeave += buttonTactor_MouseLeave;
+            button8.MouseLeave += buttonTactor_MouseLeave;
+            button9.MouseLeave += buttonTactor_MouseLeave;
+            button10.MouseLeave += buttonTactor_MouseLeave;
+            button11.MouseLeave += buttonTactor_MouseLeave;
+            button12.MouseLeave += buttonTactor_MouseLeave;
+            button13.MouseLeave += buttonTactor_MouseLeave;
+            button14.MouseLeave += buttonTactor_MouseLeave;
+            button15.MouseLeave += buttonTactor_MouseLeave;
+            button16.MouseLeave += buttonTactor_MouseLeave;
         }
 
         private void Exp3_Load(object sender, EventArgs e)
@@ -62,7 +96,7 @@ namespace patternTest
 
             shuffleStimuli();
 
-            panelAnswer.Enabled = false;
+            setAnswerButtonEnable(false);
         }
 
         private void shuffleStimuli()
@@ -88,7 +122,18 @@ namespace patternTest
             }
         }
 
-        private void buttonPlay_Click(object sender, EventArgs e)
+        private void Exp3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tw.Close();
+            twT.Close();
+        }
+
+        private void buttonAnswer_Click(object sender, EventArgs e)
+        {
+            scoreAnswer(((Button)sender).Tag.ToString());
+        }
+
+        private void buttonPlay_Click_1(object sender, EventArgs e)
         {
             if (trialNum == 0)
             {
@@ -110,18 +155,7 @@ namespace patternTest
             buttonPlay.ForeColor = Color.Black;
             buttonPlay.BackColor = Color.Black;
 
-            panelAnswer.Enabled = true;
-        }
-
-        private void Exp3_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            tw.Close();
-            twT.Close();
-        }
-
-        private void buttonAnswer_Click(object sender, EventArgs e)
-        {
-            scoreAnswer(((Button)sender).Tag.ToString());
+            setAnswerButtonEnable(true);
         }
 
         private void playPattern(string pattern)
@@ -139,6 +173,16 @@ namespace patternTest
 
             this.ID = ID;
             this.trialNum = 0;
+        }
+
+        private void buttonPlay_MouseEnter(object sender, EventArgs e)
+        {
+            buttonPlay.BackColor = Color.DarkBlue;
+        }
+
+        private void buttonPlay_MouseLeave_1(object sender, EventArgs e)
+        {
+            buttonPlay.BackColor = Color.Gray;
         }
 
         private void scoreAnswer(string answer)
@@ -160,9 +204,11 @@ namespace patternTest
             if (trialNum < 48)
             {
                 labelWait.Enabled = true;
-                panelAnswer.Enabled = false;
+                labelWait.Visible = true;
+                setAnswerButtonEnable(false);
                 Delay(ISI);
 
+                labelWait.Visible = false;
                 labelWait.Enabled = false;
                 buttonPlay.Enabled = true;
                 buttonPlay.ForeColor = Color.White;
@@ -180,15 +226,49 @@ namespace patternTest
                 twT.WriteLine(ID + "," + tExp.ToString());
                 twT.Flush();
 
-                panelAnswer.Enabled = false;
+                setAnswerButtonEnable(false);
 
                 labelTrial.Text = "Finished!";
                 buttonPlay.Enabled = false;
                 labelWait.Text = "Finished!";
                 labelWait.Enabled = true;
+                labelWait.Visible = true;
             }
             answerMode = false;
         }
+
+        private void setAnswerButtonEnable(bool enable)
+        {
+            button1.Enabled = enable;
+            button2.Enabled = enable;
+            button3.Enabled = enable;
+            button4.Enabled = enable;
+            button5.Enabled = enable;
+            button6.Enabled = enable;
+            button7.Enabled = enable;
+            button8.Enabled = enable;
+            button9.Enabled = enable;
+            button10.Enabled = enable;
+            button11.Enabled = enable;
+            button12.Enabled = enable;
+            button13.Enabled = enable;
+            button14.Enabled = enable;
+            button15.Enabled = enable;
+            button16.Enabled = enable;
+        }
+
+        private void buttonTactor_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.BorderColor = Color.White;
+        }
+
+        private void buttonTactor_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.FlatAppearance.BorderColor = Color.Black;
+        }
+
         private static DateTime Delay(int MS)
         {
             DateTime ThisMoment = DateTime.Now;
